@@ -27,6 +27,7 @@ const Authentification = async (table, pseudo, mdp) => {
     })
 }
 
+// POUR PROFESSEUR //
 const getClasse_prof = async (idProf) => {
     return new Promise((resolve, reject) => {
         let sql='SELECT cs.idClasse, cs.nom FROM classe cs INNER JOIN cours cr ON cs.idClasse = cr.Id_Classe INNER JOIN professeur pf ON cr.Id_Prof = pf.idProf AND pf.idProf = ?;';
@@ -41,7 +42,6 @@ const getClasse_prof = async (idProf) => {
     })
 }
 
-// Obtenir la liste de tous les élèves avec leur info
 const getEleve_classe = async (idClasse) => {
     return new Promise((resolve, reject) => {
         let sql='SELECT e.idEleve, e.nom, e.prenom FROM eleve e INNER JOIN classe c ON c.idClasse = e.Id_Classe WHERE e.Id_Classe = ? order by nom, prenom;';
@@ -58,7 +58,7 @@ const getEleve_classe = async (idClasse) => {
 
 const getNotes_Matiere = async (idEleve, idProf) => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT DISTINCT e.nom, n.note FROM notes n INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ?';
+        let sql='SELECT DISTINCT e.nom, n.note, m.idMatiere FROM notes n INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ?';
         sql +=' INNER JOIN matiere m ON n.Id_Matiere = m.idMatiere INNER JOIN professeur p ON p.Id_Matiere = m.idMatiere AND p.idProf = ?;'
         db.query(sql, [idEleve, idProf], (err, data, fields) => {
             if(err || data.length == 0){
@@ -71,11 +71,20 @@ const getNotes_Matiere = async (idEleve, idProf) => {
     })
 }
 
-
-/*SELECT e.nom, n.note FROM notes n 
-INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = 3 
-INNER JOIN matiere m ON n.Id_Matiere = m.idMatiere
-INNER JOIN professeur p ON p.Id_Matiere = m.idMatiere AND p.idProf = 3;*/
+const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
+    return new Promise((resolve, reject) => {
+        let sql='INSERT INTO notes (Id_Matiere, Id_Eleve, Titre, DateNote, note) VALUES (?, ?, ?, now(), ?)';
+        db.query(sql, [Id_Matiere, Id_Eleve, Titre, note], (err, data, fields) => {
+            if(err || data.length == 0){
+                console.log(err)
+                reject("Une erreur est survenue !")
+            }else{
+                resolve(data)
+            }
+        })
+    })
+}
+// FIN PROFESSEUR //
 
 
 module.exports={
@@ -83,4 +92,5 @@ module.exports={
     getClasse_prof,
     getEleve_classe,
     getNotes_Matiere,
+    newNote_Matiere,
 }

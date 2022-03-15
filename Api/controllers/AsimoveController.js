@@ -74,6 +74,24 @@ const NotesMatiere = async (req, res) => {
     })
 }
 
+const AjouteDeNoteMatiere = async (req, res) => {
+
+    let idMatiere = req.params.Id_Matiere;
+    let idEleve = req.params.Id_Eleve;
+    let titre = req.params.titre;
+    let note = req.params.note;
+
+    await db.newNote_Matiere(idMatiere, idEleve, titre, note)
+    .then((data) => {
+        let err = false;
+        console.log(data)
+        res.json(data)
+    }).catch((err) => {
+        console.log(err)
+        res.json(err)
+    })
+}
+
 
 
 // Exportation //
@@ -83,6 +101,7 @@ module.exports = {
     classeProf, 
     eleveClasse,
     NotesMatiere,
+    AjouteDeNoteMatiere,
 }
 
 

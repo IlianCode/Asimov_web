@@ -26,6 +26,8 @@ routeur.get('/', AsimovControle.asimovMenu)
 
     .get('/api/Notes_Matiere/:idProf/:idEleve', AsimovControle.NotesMatiere)
 
+    .post('/api/Notes_Matiere/:idProf/:idEleve', AsimovControle.NotesMatiere)
+
     // ------------------------ Api pour Référent ---------------------------- //
 
     // ------------------------ Api pour Proviseur ---------------------------- //

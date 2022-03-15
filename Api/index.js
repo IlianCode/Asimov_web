@@ -26,8 +26,3 @@ app.listen(port, () => {
 app.use('/Asimov', Routeur);
 
 module.exports = app
-
-// erreur 404 //
-app.use((req, res) => {
-    res.status(404).render('erreur')
-});
