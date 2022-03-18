@@ -4,7 +4,7 @@ const express = require('express')
 const mysql = require('mysql')
 const iniparser = require('iniparser')
 
-const Routeur = require('./routes/AsimovRoutes')
+const Routeur = require('./routes/Routes')
 
 // activation des dépendances 
 let app = express()
