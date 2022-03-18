@@ -2,9 +2,13 @@ const db = require('../models/modelProf') // Requetes
 
 const ajouter_new_eleve = async (req, res) => {
 
-    let idProf = req.params.id;
+    let pseudo = req.params.pseudo;
+    let mdp = req.params.mdp;
+    let nom = req.params.nom;
+    let prenom = req.params.prenom;
+    let Id_Classe = req.params.Id_Classe;
 
-    await db.getClasse_prof(idProf)
+    await db.getClasse_prof(pseudo,mdp,nom,prenom,Id_Classe)
     .then((data) => {
         let err = false;
         console.log(data)
@@ -14,3 +18,11 @@ const ajouter_new_eleve = async (req, res) => {
         res.json(err)
     })
 }
+
+
+// Exportation //
+module.exports = {
+    ajouter_new_eleve
+}
+
+

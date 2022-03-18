@@ -8,6 +8,7 @@ const routeur = express.Router()
 
 // Ajout des controllers //
 const ctrlProf = require('../controllers/ctrlProf')
+const ctrlReferent = require('../controllers/ctrlReferent')
 
 // Enregistrement des routeurs
 
@@ -32,7 +33,8 @@ routeur.get('/api/Authentification/:table/:pseudo/:mdp', ctrlProf.Connexion)
 
     // ------------------------ Api pour Référent ---------------------------- //
 //créer une nouvel eleve 
-
+    .post('/api/Ajout_Nouvel_eleve/:pseudo/:mdp/:nom/:prenom/:Id_Classe', ctrlReferent.ajouter_new_eleve)
+    
 // créer une nouvelle classe 
 
 
