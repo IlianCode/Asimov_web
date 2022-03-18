@@ -1,4 +1,4 @@
-const db = require('../models/modelProf') // Requetes 
+const db = require('../models/modelReferent') // Requetes 
 
 const ajouter_new_eleve = async (req, res) => {
 
@@ -8,7 +8,7 @@ const ajouter_new_eleve = async (req, res) => {
     let prenom = req.params.prenom;
     let Id_Classe = req.params.Id_Classe;
 
-    await db.getClasse_prof(pseudo,mdp,nom,prenom,Id_Classe)
+    await db.createEleve(pseudo,mdp,nom,prenom,Id_Classe)
     .then((data) => {
         let err = false;
         console.log(data)

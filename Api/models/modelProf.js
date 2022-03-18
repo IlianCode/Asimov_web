@@ -33,6 +33,7 @@ const getClasse_prof = async (idProf) => {
         let sql='SELECT cs.idClasse, cs.nom FROM classe cs INNER JOIN cours cr ON cs.idClasse = cr.Id_Classe INNER JOIN professeur pf ON cr.Id_Prof = pf.idProf AND pf.idProf = ?;';
         db.query(sql, idProf, (err, data, fields) => {
             if(err || data.length == 0){
+                console.log("tes")
                 console.log(err)
                 reject("Aucune Classe trouvé !")
             }else{
