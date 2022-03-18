@@ -1,12 +1,5 @@
 const db = require('../models/donnees') // Requetes 
 
-
-// Affichage Menu //
-const asimovMenu = (req, res) => {
-    res.render('menu')
-}
-
-
 const Connexion = async (req, res) => {
 
     // Prelevé dans l'URL
@@ -76,8 +69,8 @@ const NotesMatiere = async (req, res) => {
 
 const AjouteDeNoteMatiere = async (req, res) => {
 
-    let idMatiere = req.params.Id_Matiere;
-    let idEleve = req.params.Id_Eleve;
+    let idMatiere = req.params.idMatiere;
+    let idEleve = req.params.idEleve;
     let titre = req.params.titre;
     let note = req.params.note;
 
@@ -96,7 +89,6 @@ const AjouteDeNoteMatiere = async (req, res) => {
 
 // Exportation //
 module.exports = {
-    asimovMenu,
     Connexion,
     classeProf, 
     eleveClasse,

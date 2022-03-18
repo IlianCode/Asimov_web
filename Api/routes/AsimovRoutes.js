@@ -10,11 +10,10 @@ app.use(express.static('public'))
 const AsimovControle = require('../controllers/AsimoveController')
 
 // Enregistrement des routeurs
-routeur.get('/', AsimovControle.asimovMenu)
 
     // ------------------------ Api Authentification ---------------------------- //
 
-    .get('/api/Authentification/:table/:pseudo/:mdp', AsimovControle.Connexion)
+routeur.get('/api/Authentification/:table/:pseudo/:mdp', AsimovControle.Connexion)
 
     // ------------------------ Api pour Eleves ---------------------------- //
 
@@ -26,7 +25,7 @@ routeur.get('/', AsimovControle.asimovMenu)
 
     .get('/api/Notes_Matiere/:idProf/:idEleve', AsimovControle.NotesMatiere)
 
-    .post('/api/Notes_Matiere/:idProf/:idEleve', AsimovControle.NotesMatiere)
+    .post('/api/Notes_Matiere/:idMatiere/:idEleve/:titre/:note', AsimovControle.NotesMatiere)
 
     // ------------------------ Api pour Référent ---------------------------- //
 
