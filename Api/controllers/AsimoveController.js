@@ -67,7 +67,7 @@ const NotesMatiere = async (req, res) => {
     })
 }
 
-const AjouteDeNoteMatiere = async (req, res) => {
+const AjoutDeNoteMatiere = async (req, res) => {
 
     let idMatiere = req.params.idMatiere;
     let idEleve = req.params.idEleve;
@@ -93,7 +93,7 @@ module.exports = {
     classeProf, 
     eleveClasse,
     NotesMatiere,
-    AjouteDeNoteMatiere,
+    AjoutDeNoteMatiere,
 }
 
 

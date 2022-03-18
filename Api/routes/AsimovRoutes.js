@@ -1,10 +1,10 @@
 // création du routeur Express pour ce module
 const express = require('express')
 let app = express()
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 const routeur = express.Router()
-app.set('view engine', 'ejs')
-app.use(express.static('views'))
-app.use(express.static('public'))
+
 
 // Ajout des controllers //
 const AsimovControle = require('../controllers/AsimoveController')
@@ -25,7 +25,7 @@ routeur.get('/api/Authentification/:table/:pseudo/:mdp', AsimovControle.Connexio
 
     .get('/api/Notes_Matiere/:idProf/:idEleve', AsimovControle.NotesMatiere)
 
-    .post('/api/Notes_Matiere/:idMatiere/:idEleve/:titre/:note', AsimovControle.NotesMatiere)
+    .post('/api/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', AsimovControle.AjoutDeNoteMatiere)
 
     // ------------------------ Api pour Référent ---------------------------- //
 
