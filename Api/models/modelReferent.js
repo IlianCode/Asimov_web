@@ -16,6 +16,20 @@ const createEleve = async (pseudo, mdp, nom, prenom, Id_Classe) => {
     })
 }
 
+const createClasse = async(nom) => {
+    return new Promise ((resolve, reject)=> {
+        let sql = "INSERT INTO classe (nom) VALUES (?);"
+        db.query(sql,nom, (err, data, fields)=> {
+            if(err){
+                console.log(err)
+                reject(err)
+            }else {
+                resolve(data)
+            }
+        })
+    })
+}
 module.exports={
-    createEleve
+    createEleve,
+    createClasse
 }

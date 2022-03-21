@@ -85,6 +85,20 @@ const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
         })
     })
 }
+
+const modifNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note, idNote) => {
+    return new Promise((resolve, reject) => {
+        let sql='UPDATE notes SET Id_Matiere=?, Id_Eleve=? , Titre= ?, DateNote=now(), note=? WHERE idNote =?';
+        db.query(sql, [Id_Matiere, Id_Eleve, Titre, note, idNote], (err, data, fields) => {
+            if(err || data.length == 0){
+                console.log(err)
+                reject("Une erreur est survenue !")
+            }else{
+                resolve(data)
+            }
+        })
+    })
+}
 // FIN PROFESSEUR //
 
 
@@ -94,4 +108,5 @@ module.exports={
     getEleve_classe,
     getNotes_Matiere,
     newNote_Matiere,
+    modifNote_Matiere
 }
