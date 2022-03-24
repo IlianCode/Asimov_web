@@ -1,2 +1,2 @@
-npm i express ejs iniparser mysql
+npm i express iniparser mysql
  

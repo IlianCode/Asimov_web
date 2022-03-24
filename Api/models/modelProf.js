@@ -33,7 +33,6 @@ const getClasse_prof = async (idProf) => {
         let sql='SELECT cs.idClasse, cs.nom FROM classe cs INNER JOIN cours cr ON cs.idClasse = cr.Id_Classe INNER JOIN professeur pf ON cr.Id_Prof = pf.idProf AND pf.idProf = ?;';
         db.query(sql, idProf, (err, data, fields) => {
             if(err || data.length == 0){
-                console.log("tes")
                 console.log(err)
                 reject("Aucune Classe trouvé !")
             }else{
@@ -45,7 +44,7 @@ const getClasse_prof = async (idProf) => {
 
 const getEleve_classe = async (idClasse) => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT e.idEleve, e.nom, e.prenom FROM eleve e INNER JOIN classe c ON c.idClasse = e.Id_Classe WHERE e.Id_Classe = ? order by nom, prenom;';
+        let sql='SELECT e.idEleve AS idEleve, CONCAT(e.nom, " ", e.prenom) AS Nom, FROM eleve e INNER JOIN classe c ON c.idClasse = e.Id_Classe WHERE e.Id_Classe = ? order by nom, prenom;';
         db.query(sql, idClasse, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
@@ -59,8 +58,8 @@ const getEleve_classe = async (idClasse) => {
 
 const getNotes_Matiere = async (idEleve, idProf) => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT DISTINCT e.nom, n.note, m.idMatiere FROM notes n INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ?';
-        sql +=' INNER JOIN matiere m ON n.Id_Matiere = m.idMatiere INNER JOIN professeur p ON p.Id_Matiere = m.idMatiere AND p.idProf = ?;'
+        let sql='SELECT CONCAT(e.nom, " ", e.prenom) AS Nom, e.idEleve AS idEleve, n.idNote AS idNote, n.note AS note, m.idMatiere AS idMatiere FROM notes n';
+        sql +=' INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ? INNER JOIN matiere m ON n.Id_Matiere = m.idMatiere INNER JOIN professeur p ON p.Id_Matiere = m.idMatiere AND p.idProf = ?;'
         db.query(sql, [idEleve, idProf], (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
@@ -88,7 +87,7 @@ const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
 
 const modifNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note, idNote) => {
     return new Promise((resolve, reject) => {
-        let sql='UPDATE notes SET Id_Matiere=?, Id_Eleve=? , Titre= ?, DateNote=now(), note=? WHERE idNote =?';
+        let sql='UPDATE notes SET Id_Matiere = ?, Id_Eleve = ? , Titre = ?, DateNote = now(), note = ? WHERE idNote = ?';
         db.query(sql, [Id_Matiere, Id_Eleve, Titre, note, idNote], (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)

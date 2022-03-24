@@ -1,5 +1,18 @@
-const res = require('express/lib/response');
+//const res = require('express/lib/response');
 const db = require('../models/modelReferent') // Requetes 
+
+const afficher_classe = async (req, res) => {
+
+    await db.getClasse()
+    .then((data) => {
+        let err = false;
+        console.log(data)
+        res.json(data)
+    }).catch((err) => {
+        console.log(err)
+        res.json(err)
+    })
+}
 
 const ajouter_new_eleve = async (req, res) => {
 
@@ -20,26 +33,11 @@ const ajouter_new_eleve = async (req, res) => {
     })
 }
 
-const ajouter_new_classe= async(req,res) => {
-    let nom = req.params.nom;
-
-    await db.createClasse(nom)
-    .then((data)=>{
-        let err= false;
-        console.log(data)
-        res.json(data)
-
-    }).catch((err)=>{
-        console.log(err)
-        res.json(err)
-    })
-}
-
 
 // Exportation //
 module.exports = {
+    afficher_classe,
     ajouter_new_eleve,
-    ajouter_new_classe
 }
 
 

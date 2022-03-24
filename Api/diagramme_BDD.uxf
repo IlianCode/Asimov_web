@@ -1,17 +1,11 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>190</x><y>360</y><w>100</w><h>120</h></coordinates><panel_attributes>Professeur
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>190</x><y>360</y><w>100</w><h>120</h></coordinates><panel_attributes>Prof/Proviseur
 --
 _idProfesseur_
 pseudo
 mdp
 nom
 prenom
-referent</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>140</y><w>100</w><h>110</h></coordinates><panel_attributes>Proviseur
---
-_idProviseur_
-pseudo
-mdp
-nom
-prenom</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>260</y><w>100</w><h>70</h></coordinates><panel_attributes>Matiere
+referent</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>260</y><w>100</w><h>70</h></coordinates><panel_attributes>Matiere
 --
 _idMatiere_
 nom</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>260</y><w>100</w><h>70</h></coordinates><panel_attributes>Classe

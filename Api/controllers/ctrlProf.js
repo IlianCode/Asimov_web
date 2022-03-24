@@ -85,7 +85,8 @@ const ajouter_note_eleve_matiere = async (req, res) => {
     })
 }
 
-const modifier_note_eleve_matiere = async (req, res)=> {
+const modifier_note_eleve_matiere = async (req, res) => {
+
     let idMatiere = req.params.idMatiere;
     let idEleve = req.params.idEleve;
     let titre = req.params.titre;

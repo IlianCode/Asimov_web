@@ -32,16 +32,16 @@ routeur.get('/api/Authentification/:table/:pseudo/:mdp', ctrlProf.Connexion)
     .post('/api/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note/:idNote', ctrlProf.modifier_note_eleve_matiere)
 
     // ------------------------ Api pour Référent ---------------------------- //
+//liste déroulante pour choisir la classe du nouvelle élève
+    .get('/api/Classes', ctrlReferent.afficher_classe)
+
 //créer une nouvel eleve 
     .post('/api/Ajout_Nouvel_eleve/:pseudo/:mdp/:nom/:prenom/:Id_Classe', ctrlReferent.ajouter_new_eleve)
-
-// créer une nouvelle classe 
-    .post('/api/Ajout_Nouvel_classe/:nom', ctrlReferent.ajouter_new_classe)
 
     // ------------------------ Api pour Proviseur ---------------------------- //
 //céer une matiere 
 
-// créer des prof 
+//créer des prof 
 
 //modifier une note 
 
