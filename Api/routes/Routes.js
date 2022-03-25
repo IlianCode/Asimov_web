@@ -9,6 +9,7 @@ const routeur = express.Router()
 // Ajout des controllers //
 const ctrlProf = require('../controllers/ctrlProf')
 const ctrlReferent = require('../controllers/ctrlReferent')
+const ctrlEleve = require('../controllers/ctrlEleve')
 
 // Enregistrement des routeurs
 
@@ -18,7 +19,11 @@ routeur.get('/api/Authentification/:table/:pseudo/:mdp', ctrlProf.Connexion)
 
     // ------------------------ Api pour Eleves ---------------------------- //
 
+//afficher toutes les notes de l'élève
+    .get('/api/Afficher_Notes_Eleve/:idEleve', ctrlEleve.afficher_note_eleve)
+
     // ------------------------ Api pour Professeurs ---------------------------- //
+
 //afficher les classes d'un professeur
     .get('/api/Classes/:id', ctrlProf.afficher_classe_prof)
 //afficher la liste des eleves d'une classe
@@ -29,7 +34,7 @@ routeur.get('/api/Authentification/:table/:pseudo/:mdp', ctrlProf.Connexion)
     .post('/api/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
 
 //modifier une note 
-    .post('/api/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note/:idNote', ctrlProf.modifier_note_eleve_matiere)
+    .post('/api/modif_Notes_Matiere/:idMatiere/:idEleve/:titre/:note/:idNote', ctrlProf.modifier_note_eleve_matiere)
 
     // ------------------------ Api pour Référent ---------------------------- //
 //liste déroulante pour choisir la classe du nouvelle élève
