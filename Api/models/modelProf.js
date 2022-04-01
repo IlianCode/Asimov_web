@@ -85,13 +85,15 @@ const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
     })
 }
 
-const modifNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note, idNote) => {
+const modifNote_Matiere = async (note, idNote) => {
     return new Promise((resolve, reject) => {
         let sql='UPDATE notes SET note = ? WHERE idNote = ?';
-        db.query(sql, [Id_Matiere, Id_Eleve, Titre, note, idNote], (err, data, fields) => {
+        db.query(sql, [note, idNote], (err, data, fields) => {
             if(err){
                 console.log(err)
                 reject("Une erreur est survenue !")
+            }else if(data.changedRows == 0){
+                reject("Modification échouée !")
             }else{
                 resolve("Modification réussi !")
             }
@@ -106,6 +108,8 @@ const deleteNote_Matiere = async (idNote) => {
             if(err){
                 console.log(err)
                 reject("Une erreur est survenue !")
+            }else if(data.affectedRows == 0){
+                reject("Suppression échouée !")
             }else{
                 resolve("Suppression réussi !")
             }

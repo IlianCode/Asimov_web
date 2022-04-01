@@ -19,6 +19,6 @@ app.listen(port, () => {
     console.log(`Serveur HTTP fonctionnel. Go http://localhost:${port}`)
   })
 
-app.use('/Asimov', Routeur);
+app.use('/Asimov/api', Routeur);
 
 module.exports = app

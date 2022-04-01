@@ -22,7 +22,7 @@ const ajouter_new_eleve = async (req, res) => {
     let prenom = req.params.prenom;
     let Id_Classe = req.params.Id_Classe;
 
-    await db.createEleve(pseudo,mdp,nom,prenom,Id_Classe)
+    await db.newEleve(pseudo,mdp,nom,prenom,Id_Classe)
     .then((data) => {
         let err = false;
         console.log(data)
