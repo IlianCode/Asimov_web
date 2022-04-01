@@ -30,11 +30,14 @@ routeur.get('/api/Authentification/:table/:pseudo/:mdp', ctrlProf.Connexion)
     .get('/api/Eleves_Classe/:id', ctrlProf.afficher_details_classe)
 //affiche les notes d'un eleve dans une matiere
     .get('/api/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)
+//supprimer une note
+    .get('/api/Suppr_Notes_Matiere/:idNote', ctrlProf.afficher_note_eleve_matiere)
 //ajoute une note a un eleve dans une matiere precise + description de la note
     .post('/api/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
-
 //modifier une note 
     .post('/api/modif_Notes_Matiere/:idMatiere/:idEleve/:titre/:note/:idNote', ctrlProf.modifier_note_eleve_matiere)
+//supprimer une note
+    .get
 
     // ------------------------ Api pour Référent ---------------------------- //
 //liste déroulante pour choisir la classe du nouvelle élève

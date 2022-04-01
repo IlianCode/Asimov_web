@@ -1,6 +1,6 @@
 const db = require('./connexion')
 
-const getClasse = async () => {
+const getClasse = async () => { // Aussi modelProviseur
     return new Promise((resolve, reject) => {
         let sql='SELECT idClasse, nom FROM classe';
         db.query(sql, (err, data, fields) => {

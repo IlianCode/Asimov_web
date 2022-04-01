@@ -42,7 +42,7 @@ const getClasse_prof = async (idProf) => {
     })
 }
 
-const getEleve_classe = async (idClasse) => {
+const getEleve_classe = async (idClasse) => { // Aussi modelProviseur
     return new Promise((resolve, reject) => {
         let sql='SELECT e.idEleve AS idEleve, CONCAT(e.nom, " ", e.prenom) AS Nom, FROM eleve e INNER JOIN classe c ON c.idClasse = e.Id_Classe WHERE e.Id_Classe = ? order by nom, prenom;';
         db.query(sql, idClasse, (err, data, fields) => {
@@ -75,11 +75,11 @@ const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
     return new Promise((resolve, reject) => {
         let sql='INSERT INTO notes (Id_Matiere, Id_Eleve, Titre, DateNote, note) VALUES (?, ?, ?, now(), ?)';
         db.query(sql, [Id_Matiere, Id_Eleve, Titre, note], (err, data, fields) => {
-            if(err || data.length == 0){
+            if(err){
                 console.log(err)
                 reject("Une erreur est survenue !")
             }else{
-                resolve(data)
+                resolve("Nouvelle note ajoutée !")
             }
         })
     })
@@ -87,17 +87,32 @@ const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
 
 const modifNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note, idNote) => {
     return new Promise((resolve, reject) => {
-        let sql='UPDATE notes SET Id_Matiere = ?, Id_Eleve = ? , Titre = ?, DateNote = now(), note = ? WHERE idNote = ?';
+        let sql='UPDATE notes SET note = ? WHERE idNote = ?';
         db.query(sql, [Id_Matiere, Id_Eleve, Titre, note, idNote], (err, data, fields) => {
-            if(err || data.length == 0){
+            if(err){
                 console.log(err)
                 reject("Une erreur est survenue !")
             }else{
-                resolve(data)
+                resolve("Modification réussi !")
             }
         })
     })
 }
+
+const deleteNote_Matiere = async (idNote) => {
+    return new Promise((resolve, reject) => {
+        let sql='DELETE FROM notes WHERE idNote = ?';
+        db.query(sql, idNote, (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue !")
+            }else{
+                resolve("Suppression réussi !")
+            }
+        })
+    })
+}
+
 // FIN PROFESSEUR //
 
 
@@ -107,5 +122,6 @@ module.exports={
     getEleve_classe,
     getNotes_Matiere,
     newNote_Matiere,
-    modifNote_Matiere
+    modifNote_Matiere,
+    deleteNote_Matiere,
 }
