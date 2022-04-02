@@ -1,19 +1,6 @@
 //const res = require('express/lib/response');
 const db = require('../models/modelReferent') // Requetes 
 
-const afficher_classe = async (req, res) => {
-
-    await db.getClasse()
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
-}
-
 const ajouter_new_eleve = async (req, res) => {
 
     let pseudo = req.params.pseudo;
@@ -33,10 +20,11 @@ const ajouter_new_eleve = async (req, res) => {
     })
 }
 
+// + Controller afficher_classe dans ctrlGlobal //
+
 
 // Exportation //
 module.exports = {
-    afficher_classe,
     ajouter_new_eleve,
 }
 

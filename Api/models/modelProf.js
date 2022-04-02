@@ -27,7 +27,6 @@ const Authentification = async (table, pseudo, mdp) => {
     })
 }
 
-// POUR PROFESSEUR //
 const getClasse_prof = async (idProf) => {
     return new Promise((resolve, reject) => {
         let sql='SELECT cs.idClasse, cs.nom FROM classe cs INNER JOIN cours cr ON cs.idClasse = cr.Id_Classe INNER JOIN professeur pf ON cr.Id_Prof = pf.idProf AND pf.idProf = ?;';
@@ -35,20 +34,6 @@ const getClasse_prof = async (idProf) => {
             if(err || data.length == 0){
                 console.log(err)
                 reject("Aucune Classe trouvé !")
-            }else{
-                resolve(data)
-            }
-        })
-    })
-}
-
-const getEleve_classe = async (idClasse) => { // Aussi modelProviseur
-    return new Promise((resolve, reject) => {
-        let sql='SELECT e.idEleve AS idEleve, CONCAT(e.nom, " ", e.prenom) AS Nom, FROM eleve e INNER JOIN classe c ON c.idClasse = e.Id_Classe WHERE e.Id_Classe = ? order by nom, prenom;';
-        db.query(sql, idClasse, (err, data, fields) => {
-            if(err || data.length == 0){
-                console.log(err)
-                reject("Aucun Eleve trouvé !")
             }else{
                 resolve(data)
             }
@@ -117,13 +102,12 @@ const deleteNote_Matiere = async (idNote) => {
     })
 }
 
-// FIN PROFESSEUR //
+// + Requete getEleve_classe dans modelGlobal.js //
 
 
 module.exports={
     Authentification,
     getClasse_prof,
-    getEleve_classe,
     getNotes_Matiere,
     newNote_Matiere,
     modifNote_Matiere,

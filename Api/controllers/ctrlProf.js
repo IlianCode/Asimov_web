@@ -1,46 +1,10 @@
 const db = require('../models/modelProf') // Requetes 
 
-const Connexion = async (req, res) => {
-
-    // Prelevé dans l'URL
-    let table = req.params.table;
-    let pseudo = req.params.pseudo;
-    let mdp = req.params.mdp;
-    //
-    
-    await db.Authentification(table, pseudo, mdp)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
-}
-
-
 const afficher_classe_prof = async (req, res) => {
 
     let idProf = req.params.id;
 
     await db.getClasse_prof(idProf)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
-}
-
-
-const afficher_details_classe = async (req, res) => {
-
-    let idClasse = req.params.id;
-
-    await db.getEleve_classe(idClasse)
     .then((data) => {
         let err = false;
         console.log(data)
@@ -120,9 +84,7 @@ const supprimer_note_eleve_matiere = async (req, res) => {
 
 // Exportation //
 module.exports = {
-    Connexion,
     afficher_classe_prof, 
-    afficher_details_classe,
     afficher_note_eleve_matiere,
     ajouter_note_eleve_matiere,
     modifier_note_eleve_matiere,

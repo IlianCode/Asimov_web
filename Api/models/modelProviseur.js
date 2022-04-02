@@ -16,11 +16,11 @@ const getMatiere = async () => {
 
 const getProf = async () => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT p.idProf, CONCAT(p.nom, " ", p.prenom) AS Nom, m.IdMatiere FROM professeur p INNER JOIN matiere m ON m.idMatiere = p.Id_MatiereWHERE p.Proviseur = 0;';
+        let sql='SELECT p.idProf, CONCAT(p.nom, " ", p.prenom) AS Nom, m.IdMatiere FROM professeur p INNER JOIN matiere m ON m.idMatiere = p.Id_Matiere WHERE p.Proviseur = 0;';
         db.query(sql, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
-                reject("Aucune Matiere trouvé !")
+                reject("Aucune Professeur trouvé !")
             }else{
                 resolve(data)
             }
@@ -43,15 +43,16 @@ const newMatiere = async (nom) => {
     })
 }
 
-const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
+const newProf = async (pseudo, mdp, nom, prenom, idMatiere) => {
     return new Promise((resolve, reject) => {
-        let sql='INSERT INTO notes (Id_Matiere, Id_Eleve, Titre, DateNote, note) VALUES (?, ?, ?, now(), ?)';
-        db.query(sql, [Id_Matiere, Id_Eleve, Titre, note], (err, data, fields) => {
+        let sql="INSERT INTO professeur (pseudo, mdp, nom, prenom, Id_Matiere) VALUES (?,?,?,?,?);"
+
+        db.query(sql, [pseudo, mdp, nom, prenom, idMatiere], (err, data, fields) => {
             if(err){
                 console.log(err)
-                reject("Une erreur est survenue !")
+                reject("Une erreur est survenue")
             }else{
-                resolve("Nouvelle note ajoutée !")
+                resolve(data)
             }
         })
     })
@@ -59,5 +60,7 @@ const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
 
 module.exports={
     getMatiere,
+    getProf,
     newMatiere,
+    newProf,
 }
