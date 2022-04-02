@@ -1,0 +1,30 @@
+#body-connexion{
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.centrePage{
+    margin: 5%;
+}
+
+.formulaire{
+    background-color: white;
+    width: 600px; 
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image{ 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+.taille{
+    background-color: rgb(255, 145, 0);
+}
