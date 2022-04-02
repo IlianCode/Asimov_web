@@ -30,6 +30,9 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
 //afficher toutes les notes de l'élève
     .get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur
 
+// Modifier une note 
+    .post('/modif_Notes/:idNote/:note', ctrlGlobal.modifier_note_eleve)
+
 
 
 
@@ -43,13 +46,10 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
     .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)
 
 //supprimer une note
-    .delete('/Suppr_Notes_Matiere/:idNote', ctrlProf.supprimer_note_eleve_matiere)
+    .delete('/Suppr_Notes_Matiere/:idNote', ctrlProf.supprimer_note_eleve)
 
 //ajoute une note a un eleve dans une matiere precise + description de la note
     .post('/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
-
-//modifier une note 
-    .post('/modif_Notes_Matiere/:idNote/:note', ctrlProf.modifier_note_eleve_matiere)
 
 
 

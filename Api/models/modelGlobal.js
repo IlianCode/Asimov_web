@@ -81,6 +81,23 @@ const getNotes_Eleve = async (idEleve, Id_Eleve) => {
     })
 }
 
+// POUR : Professeur et Proviseur
+const modifNote = async (note, idNote) => {
+    return new Promise((resolve, reject) => {
+        let sql='UPDATE notes SET note = ? WHERE idNote = ?';
+        db.query(sql, [note, idNote], (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue !")
+            }else if(data.changedRows == 0){
+                reject("Modification échouée !")
+            }else{
+                resolve("Modification réussi !")
+            }
+        })
+    })
+}
+
 /*SELECT m.idMatiere, m.nom AS Matiere, CONCAT(e.nom, " ", e.prenom) AS Nom, Round(avg(n.note),2) AS Moyenne FROM notes n
 INNER JOIN matiere m ON m.idMatiere = n.Id_Matiere
 INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = 8
@@ -113,4 +130,5 @@ module.exports={
     getClasse,
     getEleve_classe,
     getNotes_Eleve,
+    modifNote
 }

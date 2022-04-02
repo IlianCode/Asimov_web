@@ -49,27 +49,11 @@ const ajouter_note_eleve_matiere = async (req, res) => {
     })
 }
 
-const modifier_note_eleve_matiere = async (req, res) => {
-
-    let note = req.params.note;
-    let idNote= req.params.idNote;
-
-    await db.modifNote_Matiere(note, idNote)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
-}
-
-const supprimer_note_eleve_matiere = async (req, res) => {
+const supprimer_note_eleve = async (req, res) => {
 
     let idNote= req.params.idNote;
 
-    await db.deleteNote_Matiere(idNote)
+    await db.deleteNote(idNote)
     .then((data) => {
         let err = false;
         console.log(data)
@@ -87,8 +71,7 @@ module.exports = {
     afficher_classe_prof, 
     afficher_note_eleve_matiere,
     ajouter_note_eleve_matiere,
-    modifier_note_eleve_matiere,
-    supprimer_note_eleve_matiere
+    supprimer_note_eleve
 }
 
 

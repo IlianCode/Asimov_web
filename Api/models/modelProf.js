@@ -70,23 +70,7 @@ const newNote_Matiere = async (Id_Matiere, Id_Eleve, Titre, note) => {
     })
 }
 
-const modifNote_Matiere = async (note, idNote) => {
-    return new Promise((resolve, reject) => {
-        let sql='UPDATE notes SET note = ? WHERE idNote = ?';
-        db.query(sql, [note, idNote], (err, data, fields) => {
-            if(err){
-                console.log(err)
-                reject("Une erreur est survenue !")
-            }else if(data.changedRows == 0){
-                reject("Modification échouée !")
-            }else{
-                resolve("Modification réussi !")
-            }
-        })
-    })
-}
-
-const deleteNote_Matiere = async (idNote) => {
+const deleteNote = async (idNote) => {
     return new Promise((resolve, reject) => {
         let sql='DELETE FROM notes WHERE idNote = ?';
         db.query(sql, idNote, (err, data, fields) => {
@@ -110,6 +94,5 @@ module.exports={
     getClasse_prof,
     getNotes_Matiere,
     newNote_Matiere,
-    modifNote_Matiere,
-    deleteNote_Matiere,
+    deleteNote
 }
