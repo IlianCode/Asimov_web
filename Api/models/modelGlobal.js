@@ -11,7 +11,7 @@ const Authentification = async (table, pseudo, mdp) => {
         }
         db.query(sql, [pseudo, mdp], (err, data, fields) => {
             if(data.length == 0){
-                resolve("Pseudo ou mot de passe incorrect !")
+                resolve()
             }
             if(err){
                 console.log(err)
@@ -41,11 +41,11 @@ const getClasse = async () => {
 // POUR : Professeur et Proviseur //
 const getEleve_classe = async (idClasse) => { 
     return new Promise((resolve, reject) => {
-        let sql='SELECT e.idEleve AS idEleve, CONCAT(e.nom, " ", e.prenom) AS Nom, FROM eleve e INNER JOIN classe c ON c.idClasse = e.Id_Classe WHERE e.Id_Classe = ? order by nom, prenom;';
+        let sql='SELECT idEleve, nom, prenom from eleve where Id_Classe =? ORDER BY nom, prenom;';
         db.query(sql, idClasse, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
-                reject("Aucun Eleve trouvé !")
+                reject()
             }else{
                 resolve(data)
             }
