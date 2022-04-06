@@ -6,10 +6,8 @@ const Authentification = async (table, pseudo, mdp) => {
         let sql='SELECT * FROM'
         if (table == 1){
             sql +=' eleve WHERE pseudo = ? AND mdp = ?';
-        }else if(table == 2){
-            sql +=' professeur WHERE pseudo = ? AND mdp = ?';
         }else{
-            sql +=' proviseur WHERE pseudo = ? AND mdp = ?';
+            sql +=' professeur WHERE pseudo = ? AND mdp = ?';
         }
         db.query(sql, [pseudo, mdp], (err, data, fields) => {
             if(data.length == 0){
@@ -22,7 +20,7 @@ const Authentification = async (table, pseudo, mdp) => {
                 resolve(data)
             }
         })
-    })
+    });
 }
 
 // POUR : Référent et Proviseur //
