@@ -66,7 +66,6 @@ const deleteNote = async (idNote) => {
 
 
 module.exports={
-    Authentification,
     getClasse_prof,
     getNotes_Matiere,
     newNote_Matiere,
