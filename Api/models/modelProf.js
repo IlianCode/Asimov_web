@@ -3,30 +3,6 @@ const db = require('./connexion')
 
 // SELECT //
 
-const Authentification = async (table, pseudo, mdp) => {
-    return new Promise((resolve, reject) => {
-        let sql='SELECT * FROM'
-        if (table == 1){
-            sql +=' eleve WHERE pseudo = ? AND mdp = ?';
-        }else if(table == 2){
-            sql +=' professeur WHERE pseudo = ? AND mdp = ?';
-        }else{
-            sql +=' proviseur WHERE pseudo = ? AND mdp = ?';
-        }
-        db.query(sql, [pseudo, mdp], (err, data, fields) => {
-            if(data.length == 0){
-                resolve("Pseudo ou mot de passe incorrect !")
-            }
-            if(err){
-                console.log(err)
-                reject("Erreur lors de l'authentification !")
-            }else{
-                resolve(data)
-            }
-        })
-    })
-}
-
 const getClasse_prof = async (idProf) => {
     return new Promise((resolve, reject) => {
         let sql='SELECT cs.idClasse, cs.nom FROM classe cs INNER JOIN cours cr ON cs.idClasse = cr.Id_Classe INNER JOIN professeur pf ON cr.Id_Prof = pf.idProf AND pf.idProf = ?;';
