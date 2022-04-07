@@ -1,4 +1,4 @@
-const db = require('../models/modelGlobal') // Requetes 
+const axios = require('axios');
 
 // Affichage Menu //
 const page_de_connexion = (req, res) => {
@@ -7,21 +7,18 @@ const page_de_connexion = (req, res) => {
 
 const Connexion = async (req, res) => {
 
-    // Prelevé dans l'URL
-    let table = req.params.table;
-    let pseudo = req.params.pseudo;
-    let mdp = req.params.mdp;
+    // Prelevé dans les champs d'un formulaire
+    let table = req.body.table;
+    let pseudo = req.body.pseudo;
+    let mdp = req.body.mdp;
     //
-    
-    await db.Authentification(table, pseudo, mdp)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
+    axios.get('/Authentification/'+table+'/'+pseudo+'/'+mdp)
+    .then(response => {
+        console.log(response);
     })
+    .catch(error => {
+        console.log(error);
+    });
 }
 
 // POUR : Référent et Proviseur //
