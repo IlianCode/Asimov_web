@@ -10,7 +10,6 @@ const Connexion = async (req, res) => {
     
     await db.Authentification(table, pseudo, mdp)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -24,7 +23,6 @@ const afficher_classe = async (req, res) => {
 
     await db.getClasse()
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -40,7 +38,6 @@ const afficher_details_classe = async (req, res) => {
 
     await db.getEleve_classe(idClasse)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -56,7 +53,6 @@ const afficher_note_eleve = async (req, res) => {
 
     await db.getNotes_Eleve(idEleve, idEleve)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -73,7 +69,6 @@ const modifier_note_eleve = async (req, res) => {
 
     await db.modifNote(note, idNote)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {

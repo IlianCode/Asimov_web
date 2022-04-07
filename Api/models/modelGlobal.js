@@ -11,7 +11,7 @@ const Authentification = async (table, pseudo, mdp) => {
         }
         db.query(sql, [pseudo, mdp], (err, data, fields) => {
             if(data.length == 0){
-                resolve()
+                reject()
             }
             if(err){
                 console.log(err)

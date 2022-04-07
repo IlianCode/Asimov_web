@@ -6,7 +6,6 @@ const afficher_classe_prof = async (req, res) => {
 
     await db.getClasse_prof(idProf)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -22,7 +21,6 @@ const afficher_note_eleve_matiere = async (req, res) => {
 
     await db.getNotes_Matiere(idEleve, idProf)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -40,7 +38,6 @@ const ajouter_note_eleve_matiere = async (req, res) => {
 
     await db.newNote_Matiere(idMatiere, idEleve, titre, note)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -55,7 +52,6 @@ const supprimer_note_eleve = async (req, res) => {
 
     await db.deleteNote(idNote)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {

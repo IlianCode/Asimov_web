@@ -4,7 +4,6 @@ const afficher_Matieres = async (req, res) => {
 
     await db.getMatiere()
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -17,7 +16,6 @@ const afficher_Prof = async (req, res) => {
 
     await db.getProf()
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -32,7 +30,6 @@ const ajouter_Matiere = async (req, res) => {
 
     await db.newMatiere(nom)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
@@ -51,7 +48,6 @@ const ajouter_Prof = async (req, res) => {
 
     await db.newProf(pseudo, mdp, nom, prenom, idMatiere)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {

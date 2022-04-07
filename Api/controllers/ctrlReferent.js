@@ -11,7 +11,6 @@ const ajouter_new_eleve = async (req, res) => {
 
     await db.newEleve(pseudo,mdp,nom,prenom,Id_Classe)
     .then((data) => {
-        let err = false;
         console.log(data)
         res.json(data)
     }).catch((err) => {
