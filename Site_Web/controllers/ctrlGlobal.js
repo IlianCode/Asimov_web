@@ -5,20 +5,12 @@ const page_de_connexion = (req, res) => {
     res.render('pageConnexion')
 }
 
-const Connexion = async (req, res) => {
+const Connexion = (req, res) => {
 
-    // Prelevé dans les champs d'un formulaire
-    let table = req.body.table;
-    let pseudo = req.body.pseudo;
-    let mdp = req.body.mdp;
-    //
-    axios.get('/Authentification/'+table+'/'+pseudo+'/'+mdp)
-    .then(response => {
-        console.log(response);
-    })
-    .catch(error => {
-        console.log(error);
-    });
+   
+    res.render('mesNotes')
+    
+    
 }
 
 // POUR : Référent et Proviseur //

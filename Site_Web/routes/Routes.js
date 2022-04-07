@@ -21,7 +21,7 @@ const ctrlProviseur = require('../controllers/ctrlProviseur')
 routeur.get('/', ctrlGlobal.page_de_connexion)
     
 // S'authentifier
-    .get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Pour tout le monde
+    .post('/Authentification', ctrlGlobal.Connexion) // Pour tout le monde
 
 // Afficher la liste des classes
     .get('/Classes', ctrlGlobal.afficher_classe) // Pour Référent et Proviseur

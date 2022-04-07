@@ -3,14 +3,20 @@
     <title>Asimov : Page de connexion</title>
 </head>
 <body id="body-connexion">
-    <div class="centrePage formulaire">
-        <div class="image" style="background-image: url(./img/logo.png); width: 100px; height: 100px;"></div>
-        <form action="" method="post">
-            <input name="pseudo" type="text" placeholder="Pseudo">
-            <input name="mdp" type="password" placeholder="Mot de passe">
-            <input type="submit" value="Connexion">
-        </form>
-        <div>Vous avez un problème avec votre mot de passe ? <br> Veuillez contacter l'administration afin qu'il soit réinitialisé !</div>
+    <div class="centrePage">
+        <div class="formulaire">
+            <div class="image" style="background-image: url(./img/logo.png); width: 100px; height: 100px;"></div>
+            <form action="asimov/Authentification" method="post">
+                <input name="pseudo" type="text" placeholder="Pseudo">
+                <input name="mdp" type="password" placeholder="Mot de passe">
+                <input type="submit" value="Connexion">
+                <input type="radio" id="eleve" name="table" value="1" checked>
+                <label for="eleve">Eleve</label>
+                <input type="radio" id="prof" name="table" value="2">
+                <label for="prof">Prof</label>
+            </form>
+            <div>Vous avez un problème avec votre mot de passe ? <br> Veuillez contacter l'administration afin qu'il soit réinitialisé !</div>
+        </div>
     </div>
 
 <%- include('footer') %>
