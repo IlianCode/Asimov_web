@@ -55,7 +55,35 @@ const ajouter_Prof = async (req, res) => {
         res.json(err)
     })
 }
-
+//supprimet une matiere 
+const supprimer_Matiere = async (req, res) => {
+    
+        let idMatiere = req.params.idMatiere;
+    
+        await db.deleteMatiere(idMatiere)
+        .then((data) => {
+            console.log(data)
+            res.json()
+        }).catch((err) => {
+            console.log(err)
+            res.json(err)
+        })
+}
+//modifer une matiere
+const modifier_Matiere = async (req, res) => {
+        
+        let idMatiere = req.params.idMatiere;
+        let nom = req.params.nom;
+        
+        await db.updateMatiere(idMatiere, nom)
+        .then((data) => {
+            console.log(data)
+            res.json()
+        }).catch((err) => {
+            console.log(err)
+            res.json(err)
+        })
+}
 // + Controller afficher_details_classe dans ctrlGlobal //
 
 // Exportation //
@@ -64,4 +92,5 @@ module.exports = {
     afficher_Prof,
     ajouter_Matiere,
     ajouter_Prof,
+    supprimer_Matiere
 }

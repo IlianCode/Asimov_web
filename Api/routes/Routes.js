@@ -46,10 +46,12 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
     .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)
 
 //supprimer une note
+    .get('/Suppr_Notes_Matiere/:idNote', ctrlProf.supprimer_note_eleve)
     .delete('/Suppr_Notes_Matiere/:idNote', ctrlProf.supprimer_note_eleve)
 
 //ajoute une note a un eleve dans une matiere precise + description de la note
     .post('/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
+    .get('/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
 
 
 
@@ -65,18 +67,21 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
 
 
     // ------------------------ Api pour Proviseur -------------------------- //
-//affiche les matieres
+// matieres==========================
+//afficher liste matieres
     .get('/Matieres', ctrlProviseur.afficher_Matieres)
-
+    //céer une matiere 
+    .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
+    .get('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
+    //supprimer une matiere
+    .get('/Suppr_Matiere/:idMatiere', ctrlProviseur.supprimer_Matiere)
+//===============
 //affiche les professeurs
     .get('/Professeurs', ctrlProviseur.afficher_Prof)
 
-//céer une matiere 
-    .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
-
+    
 //créer des prof 
     .post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
-
 
 
 // Exportation //

@@ -58,9 +58,46 @@ const newProf = async (pseudo, mdp, nom, prenom, idMatiere) => {
     })
 }
 
+//supprimer une matiere
+const deleteMatiere = async (idMatiere) => {
+    return new Promise((resolve, reject) => {
+        let sql="DELETE FROM matiere WHERE idMatiere = ?;"
+
+        db.query(sql, idMatiere, (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Suppression échouée")
+            }else{
+                resolve("Suppression réussi")
+            }
+        })
+    })
+}
+//modifier une matiere 
+const updateMatiere = async (idMatiere, nom) => {
+    return new Promise((resolve, reject) => {
+        let sql="UPDATE matiere SET nom = ? WHERE idMatiere = ?;"
+
+        db.query(sql, [nom, idMatiere], (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Modification échouée")
+            }else{
+                resolve("Modification réussi")
+            }
+        })
+    })
+}
+
 module.exports={
     getMatiere,
     getProf,
     newMatiere,
     newProf,
+    deleteMatiere,
+    updateMatiere
 }

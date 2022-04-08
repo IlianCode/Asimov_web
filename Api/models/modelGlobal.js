@@ -41,7 +41,7 @@ const getClasse = async () => {
 // POUR : Professeur et Proviseur //
 const getEleve_classe = async (idClasse) => { 
     return new Promise((resolve, reject) => {
-        let sql='SELECT idEleve, nom, prenom from eleve where Id_Classe =? ORDER BY nom, prenom;';
+        let sql='SELECT idEleve, nom, prenom from eleve where Id_Classe =? ORDER BY idEleve, nom, prenom;';
         db.query(sql, idClasse, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
