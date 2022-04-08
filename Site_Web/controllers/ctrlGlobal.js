@@ -8,7 +8,7 @@ const page_de_connexion = (req, res) => {
 const Connexion = (req, res) => {
 
    
-    res.render('mesNotes')
+    res.render('pageConnexion')
     
     
 }

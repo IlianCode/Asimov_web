@@ -1,4 +1,4 @@
-const db = require('../models/modelProf') // Requetes 
+
 
 const afficher_classe_prof = async (req, res) => {
 

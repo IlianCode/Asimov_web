@@ -1,4 +1,3 @@
-const db = require('../models/modelProviseur') // Requetes 
 
 const afficher_Matieres = async (req, res) => {
 
