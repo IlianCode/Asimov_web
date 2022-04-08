@@ -75,6 +75,8 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
     .get('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
     //supprimer une matiere
     .get('/Suppr_Matiere/:idMatiere', ctrlProviseur.supprimer_Matiere)
+    //modifier une matiere
+    .get('/Modif_Matiere/:idMatiere/:nom', ctrlProviseur.modifier_Matiere)
 //===============
 //affiche les professeurs
     .get('/Professeurs', ctrlProviseur.afficher_Prof)
