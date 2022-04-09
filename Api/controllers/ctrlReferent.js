@@ -12,7 +12,25 @@ const ajouter_new_eleve = async (req, res) => {
     await db.newEleve(pseudo,mdp,nom,prenom,Id_Classe)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
+    }).catch((err) => {
+        console.log(err)
+        res.json(err)
+    })
+}
+
+const ajouter_new_eleve_POST = async (req, res) => {
+
+    let pseudo = req.body.pseudo;
+    let mdp = req.body.mdp;
+    let nom = req.body.nom;
+    let prenom = req.body.prenom;
+    let Id_Classe = req.body.Id_Classe;
+
+    await db.newEleve(pseudo,mdp,nom,prenom,Id_Classe)
+    .then((data) => {
+        console.log(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -25,6 +43,7 @@ const ajouter_new_eleve = async (req, res) => {
 // Exportation //
 module.exports = {
     ajouter_new_eleve,
+    ajouter_new_eleve_POST
 }
 
 

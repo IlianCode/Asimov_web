@@ -93,6 +93,21 @@ const modifier_note_eleve = async (req, res) => {
     })
 }
 
+const modifier_note_eleve_POST = async (req, res) => {
+
+    let note = req.body.note;
+    let idNote = req.body.idNote;
+
+    await db.modifNote(note, idNote)
+    .then((data) => {
+        console.log(data)
+        res.status('200').json(data)
+    }).catch((err) => {
+        console.log(err)
+        res.json(err)
+    })
+}
+
 // Exportation //
 module.exports = {
     Connexion,
@@ -100,5 +115,6 @@ module.exports = {
     afficher_classe,
     afficher_details_classe,
     afficher_note_eleve,
-    modifier_note_eleve
+    modifier_note_eleve,
+    modifier_note_eleve_POST
 }

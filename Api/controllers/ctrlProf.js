@@ -7,7 +7,7 @@ const afficher_classe_prof = async (req, res) => {
     await db.getClasse_prof(idProf)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -22,7 +22,7 @@ const afficher_note_eleve_matiere = async (req, res) => {
     await db.getNotes_Matiere(idEleve, idProf)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -39,7 +39,24 @@ const ajouter_note_eleve_matiere = async (req, res) => {
     await db.newNote_Matiere(idMatiere, idEleve, titre, note)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
+    }).catch((err) => {
+        console.log(err)
+        res.json(err)
+    })
+}
+
+const ajouter_note_eleve_matiere_POST = async (req, res) => {
+
+    let idMatiere = req.body.idMatiere;
+    let idEleve = req.body.idEleve;
+    let titre = req.body.titre;
+    let note = req.body.note;
+
+    await db.newNote_Matiere(idMatiere, idEleve, titre, note)
+    .then((data) => {
+        console.log(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -53,7 +70,7 @@ const supprimer_note_eleve = async (req, res) => {
     await db.deleteNote(idNote)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -67,6 +84,7 @@ module.exports = {
     afficher_classe_prof, 
     afficher_note_eleve_matiere,
     ajouter_note_eleve_matiere,
+    ajouter_note_eleve_matiere_POST,
     supprimer_note_eleve
 }
 
