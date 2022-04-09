@@ -18,6 +18,26 @@ const Connexion = async (req, res) => {
     })
 }
 
+const Connexion_POST = async (req, res) => {
+
+    // Prelevé dans l'URL
+    /*let table = req.params.table;
+    let pseudo = req.params.pseudo;
+    let mdp = req.params.mdp;*/
+    //
+    console.log(req.body)
+    console.log(req.body.name)
+    
+    /*await db.Authentification(table, pseudo, mdp)
+    .then((data) => {
+        console.log(data)
+        res.json(data)
+    }).catch((err) => {
+        console.log(err)
+        res.json(err)
+    })*/
+}
+
 // POUR : Référent et Proviseur //
 const afficher_classe = async (req, res) => {
 
@@ -80,6 +100,7 @@ const modifier_note_eleve = async (req, res) => {
 // Exportation //
 module.exports = {
     Connexion,
+    Connexion_POST,
     afficher_classe,
     afficher_details_classe,
     afficher_note_eleve,

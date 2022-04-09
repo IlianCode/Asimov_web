@@ -20,6 +20,7 @@ const ctrlProviseur = require('../controllers/ctrlProviseur')
 
 //S'authentifier
 routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Pour tout le monde
+    .post('/Authentification', ctrlGlobal.Connexion_POST)
 
 //afficher la liste des classes
     .get('/Classes', ctrlGlobal.afficher_classe) // Pour Référent et Proviseur
@@ -31,7 +32,8 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
     .get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur
 
 // Modifier une note 
-    .post('/modif_Notes/:idNote/:note', ctrlGlobal.modifier_note_eleve)
+    /*.post('/modif_Notes/:idNote/:note', ctrlGlobal.modifier_note_eleve_POST)*/
+    .get('/modif_Notes', ctrlGlobal.modifier_note_eleve)
 
 
 
@@ -47,10 +49,9 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
 
 //supprimer une note
     .get('/Suppr_Notes_Matiere/:idNote', ctrlProf.supprimer_note_eleve)
-    .delete('/Suppr_Notes_Matiere/:idNote', ctrlProf.supprimer_note_eleve)
 
 //ajoute une note a un eleve dans une matiere precise + description de la note
-    .post('/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
+    /*.post('/Ajout_Notes_Matiere', ctrlProf.ajouter_note_eleve_matiere_POST)*/
     .get('/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
 
 
@@ -60,7 +61,8 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
     // ------------------------ Api pour Référent --------------------------- //
 
 //créer une nouvel eleve 
-    .post('/Ajout_Nouvel_Eleve/:pseudo/:mdp/:nom/:prenom/:Id_Classe', ctrlReferent.ajouter_new_eleve)
+    /*.post('/Ajout_Nouvel_Eleve', ctrlReferent.ajouter_new_eleve_POST)*/
+    .get('/Ajout_Nouvel_Eleve/:pseudo/:mdp/:nom/:prenom/:Id_Classe', ctrlReferent.ajouter_new_eleve)
 
 
 
@@ -71,19 +73,21 @@ routeur.get('/Authentification/:table/:pseudo/:mdp', ctrlGlobal.Connexion) // Po
 //afficher liste matieres
     .get('/Matieres', ctrlProviseur.afficher_Matieres)
     //céer une matiere 
-    .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
+    /*.post('/Ajout_Nouvelle_Matiere', ctrlProviseur.ajouter_Matiere_POST)*/
     .get('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
     //supprimer une matiere
     .get('/Suppr_Matiere/:idMatiere', ctrlProviseur.supprimer_Matiere)
     //modifier une matiere
     .get('/Modif_Matiere/:idMatiere/:nom', ctrlProviseur.modifier_Matiere)
+    /*.post('/Modif_Matiere', ctrlProviseur.modifier_Matiere)*/
 //===============
 //affiche les professeurs
     .get('/Professeurs', ctrlProviseur.afficher_Prof)
 
     
 //créer des prof 
-    .post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
+    /*.post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof_POST)*/
+    .get('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
 
 
 // Exportation //

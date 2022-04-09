@@ -1,3 +1,4 @@
+const FormData = require('form-data');
 const axios = require('axios');
 
 // Affichage Menu //
@@ -7,10 +8,30 @@ const page_de_connexion = (req, res) => {
 
 const Connexion = (req, res) => {
 
-   
-    res.render('pageConnexion')
-    
-    
+    let mesDonnees = new FormData();
+    let table = req.body.table;
+    let pseudo = req.body.pseudo;
+    let mdp = req.body.mdp;
+
+    mesDonnees.append("table", table);
+    mesDonnees.append("pseudo", pseudo);
+    mesDonnees.append("mdp", mdp);
+    console.log(mesDonnees)
+
+    axios({
+        method: 'post',
+        url: 'http://localhost:3001/Asimov/api/Authentification',
+        data: mesDonnees
+    })
+    .then((reponse) => {
+        //On traite la suite une fois la réponse obtenue 
+        console.log(reponse);
+    })
+    .catch((erreur) => {
+        //On traite ici les erreurs éventuellement survenues
+        console.log(erreur);
+    });
+    res.render('mesNotes')
 }
 
 // POUR : Référent et Proviseur //

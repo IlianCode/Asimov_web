@@ -1,12 +1,13 @@
 <%- include('header') %>
     <link rel="icon" href="/img/logo.png">
+    <script src="/controllers/ctrlGlobal.js"></script>
     <title>Asimov : Page de connexion</title>
 </head>
 <body id="body-connexion">
     <div class="centrePage">
         <div class="formulaire">
             <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
-            <form action="asimov/Authentification" method="POST">
+            <form name="elemForm" id="elemForm" action="asimov/Authentification" method="POST">
                 <input name="pseudo" type="text" placeholder="Pseudo">
                 <input name="mdp" type="password" placeholder="Mot de passe">
                 <input type="submit" value="Connexion">

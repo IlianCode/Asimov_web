@@ -66,5 +66,5 @@ module.exports = {
     afficher_Matieres,
     afficher_Prof,
     ajouter_Matiere,
-    ajouter_Prof,
+    ajouter_Prof
 }

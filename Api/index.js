@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 // Définition du port de l'application  
-const port = process.env.port || 3000
+const port = process.env.port || 3001
 
 // DÉMARRAGE DE L'APPLICATION
 app.listen(port, () => {
