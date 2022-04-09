@@ -17,7 +17,7 @@
                 <label for="prof">Prof</label>
             </form>
             <div>Vous avez un problème avec votre mot de passe ? <br> Veuillez contacter l'administration afin qu'il soit réinitialisé !</div>
-            <% if (!typeof err === 'undefined') { %> 
+            <% if (locals.err) { %> 
                 <div style="color: red;"><%=msgErreur%></div>
             <% } %> 
         </div>
