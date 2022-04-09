@@ -14,7 +14,7 @@ const Connexion = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -30,7 +30,7 @@ const Connexion_POST = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -43,7 +43,7 @@ const afficher_classe = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -58,7 +58,7 @@ const afficher_details_classe = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -73,7 +73,7 @@ const afficher_note_eleve = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -89,7 +89,7 @@ const modifier_note_eleve = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -104,7 +104,7 @@ const modifier_note_eleve_POST = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 

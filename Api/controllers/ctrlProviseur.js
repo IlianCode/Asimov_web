@@ -8,7 +8,7 @@ const afficher_Matieres = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -20,7 +20,7 @@ const afficher_Prof = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -34,7 +34,7 @@ const ajouter_Matiere = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -48,7 +48,7 @@ const ajouter_Matiere_POST = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -66,7 +66,7 @@ const ajouter_Prof = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -84,7 +84,7 @@ const ajouter_Prof_POST = async (req, res) => {
         res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 
@@ -99,7 +99,7 @@ const supprimer_Matiere = async (req, res) => {
             res.json()
         }).catch((err) => {
             console.log(err)
-            res.json(err)
+            res.status('404').json(err)
         })
 }
 //modifer une matiere
@@ -114,7 +114,7 @@ const modifier_Matiere = async (req, res) => {
             res.json()
         }).catch((err) => {
             console.log(err)
-            res.json(err)
+            res.status('404').json(err)
         })
 }
 
@@ -129,7 +129,7 @@ const modifier_Matiere_POST = async (req, res) => {
         res.json()
     }).catch((err) => {
         console.log(err)
-        res.json(err)
+        res.status('404').json(err)
     })
 }
 

@@ -7,7 +7,7 @@
     <div class="centrePage">
         <div class="formulaire">
             <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
-            <form name="elemForm" id="elemForm" action="asimov/Authentification" method="POST">
+            <form name="elemForm" id="elemForm" action="Asimov/Authentification" method="POST">
                 <input name="pseudo" type="text" placeholder="Pseudo">
                 <input name="mdp" type="password" placeholder="Mot de passe">
                 <input type="submit" value="Connexion">
@@ -17,6 +17,9 @@
                 <label for="prof">Prof</label>
             </form>
             <div>Vous avez un problème avec votre mot de passe ? <br> Veuillez contacter l'administration afin qu'il soit réinitialisé !</div>
+            <% if (!typeof err === 'undefined') { %> 
+                <div style="color: red;"><%=msgErreur%></div>
+            <% } %> 
         </div>
     </div>
 

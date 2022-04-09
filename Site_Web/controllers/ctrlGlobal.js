@@ -6,7 +6,6 @@ const page_de_connexion = (req, res) => {
 }
 
 const Connexion = (req, res) => {
-
     let table = req.body.table;
     let pseudo = req.body.pseudo;
     let mdp = req.body.mdp;
@@ -22,12 +21,12 @@ const Connexion = (req, res) => {
         let data = reponse.data[0];
         let Nom = data.nom+' '+data.prenom;
         let Classe = data.classe;
-        console.log(Nom,Classe)
+        console.log(Nom, Classe)
         res.render('mesNotes')
     })
     .catch((erreur) => {
         //On traite ici les erreurs éventuellement survenues
-        console.log(erreur);
+        res.render('pageConnexion', {err : 1, msgErreur : "Identifiant ou mot de passe incorrect !"})
     });
 }
 

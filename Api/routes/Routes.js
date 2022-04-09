@@ -45,13 +45,13 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 //afficher les classes d'un professeur
     .get('/Classes/:id', ctrlProf.afficher_classe_prof)
 
-//affiche les notes d'un eleve dans une matiere
+//afficher les notes d'un eleve dans une matiere
     .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)
 
 //supprimer une note
     .get('/Suppr_Notes_Matiere/:idNote', ctrlProf.supprimer_note_eleve)
 
-//ajoute une note a un eleve dans une matiere precise + description de la note
+//ajouter une note a un eleve dans une matiere precise + description de la note
     .post('/Ajout_Notes_Matiere', ctrlProf.ajouter_note_eleve_matiere_POST)
     .get('/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
 
@@ -61,7 +61,7 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 
     // ------------------------ Api pour Référent --------------------------- //
 
-//créer une nouvel eleve 
+//créer un nouvel eleve 
     .post('/Ajout_Nouvel_Eleve', ctrlReferent.ajouter_new_eleve_POST)
     .get('/Ajout_Nouvel_Eleve/:pseudo/:mdp/:nom/:prenom/:Id_Classe', ctrlReferent.ajouter_new_eleve)
 
@@ -82,7 +82,7 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
     .post('/Modif_Matiere', ctrlProviseur.modifier_Matiere_POST)
     .get('/Modif_Matiere/:idMatiere/:nom', ctrlProviseur.modifier_Matiere)
 //===============
-//affiche les professeurs
+//afficher les professeurs
     .get('/Professeurs', ctrlProviseur.afficher_Prof)
 
     
