@@ -11,7 +11,7 @@ const Connexion = async (req, res) => {
     await db.Authentification(table, pseudo, mdp)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -20,22 +20,18 @@ const Connexion = async (req, res) => {
 
 const Connexion_POST = async (req, res) => {
 
-    // Prelevé dans l'URL
-    /*let table = req.params.table;
-    let pseudo = req.params.pseudo;
-    let mdp = req.params.mdp;*/
-    //
-    console.log(req.body)
-    console.log(req.body.name)
-    
-    /*await db.Authentification(table, pseudo, mdp)
+    let table = req.body.table;
+    let pseudo = req.body.pseudo;
+    let mdp = req.body.mdp;
+
+    await db.Authentification(table, pseudo, mdp)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
-    })*/
+    })
 }
 
 // POUR : Référent et Proviseur //
@@ -44,7 +40,7 @@ const afficher_classe = async (req, res) => {
     await db.getClasse()
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -59,7 +55,7 @@ const afficher_details_classe = async (req, res) => {
     await db.getEleve_classe(idClasse)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -74,7 +70,7 @@ const afficher_note_eleve = async (req, res) => {
     await db.getNotes_Eleve(idEleve, idEleve)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
@@ -90,7 +86,7 @@ const modifier_note_eleve = async (req, res) => {
     await db.modifNote(note, idNote)
     .then((data) => {
         console.log(data)
-        res.json(data)
+        res.status('200').json(data)
     }).catch((err) => {
         console.log(err)
         res.json(err)
