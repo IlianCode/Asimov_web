@@ -17,7 +17,6 @@ const Connexion = (req, res) => {
     })
     .then((reponse) => {
         //On traite la suite une fois la réponse obtenue 
-        console.log(reponse)
         let data = reponse.data[0];
         let Nom = data.nom+' '+data.prenom;
         let Classe = data.classe;
@@ -27,7 +26,7 @@ const Connexion = (req, res) => {
     .catch((erreur) => {
         //On traite ici les erreurs éventuellement survenues
         res.render('pageConnexion', {err : 1, msgErreur : "Identifiant ou mot de passe incorrect !"})
-    });
+    })
 }
 
 // POUR : Référent et Proviseur //
