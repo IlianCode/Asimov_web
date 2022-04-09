@@ -3,13 +3,12 @@ const db = require('./connexion')
 // POUR : Toutes connexion //
 const Authentification = async (table, pseudo, mdp) => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT idEleve, u.nom, u.prenom, c.nom AS classe FROM classe c,';
+        let sql;
         if (table == 1){
-            sql +=' eleve u WHERE pseudo = ? AND mdp = ?';
+            sql='SELECT idEleve, nom, prenom FROM eleve WHERE pseudo = ? AND mdp = ?';
         }else{
-            sql +=' professeur u WHERE pseudo = ? AND mdp = ?';
+            sql='SELECT idProf, nom, prenom, Referent, Proviseur FROM professeur WHERE pseudo = ? AND mdp = ?';
         }
-        sql +=' And Id_Classe = idClasse';
         db.query(sql, [pseudo, mdp], (err, data, fields) => {
             if(data.length == 0){
                 reject()

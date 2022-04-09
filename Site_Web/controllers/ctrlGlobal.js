@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { response } = require('..');
 
 // Affichage Menu //
 const page_de_connexion = (req, res) => {
@@ -16,12 +17,22 @@ const Connexion = (req, res) => {
         data: {table : table, pseudo : pseudo, mdp : mdp }
     })
     .then((reponse) => {
-        //On traite la suite une fois la réponse obtenue 
-        let data = reponse.data[0];
-        let Nom = data.nom+' '+data.prenom;
-        let Classe = data.classe;
-        console.log(Nom, Classe)
-        res.render('mesNotes')
+        //On traite la suite une fois la réponse obtenue
+        let data = response.data[0];
+        let id;
+        if(table != 1){
+            id = data.idProf
+            if(data.Proviseur == 1){
+                res.redirect("/Classes")
+            }else if(data.Referent == 1){
+                res.redirect("")
+            }else{
+                res.redirect("")
+            }
+        }else{
+            id = data.idEleve
+            res.redirect("")
+        }
     })
     .catch((erreur) => {
         //On traite ici les erreurs éventuellement survenues

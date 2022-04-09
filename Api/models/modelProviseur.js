@@ -20,7 +20,7 @@ const getProf = async () => {
         db.query(sql, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
-                reject("Aucune Professeur trouvé !")
+                reject("Aucun Professeur trouvé !")
             }else{
                 resolve(data)
             }

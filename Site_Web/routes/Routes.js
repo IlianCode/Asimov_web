@@ -24,7 +24,8 @@ routeur.get('/', ctrlGlobal.page_de_connexion)
     .post('/Authentification', ctrlGlobal.Connexion) // Pour tout le monde
 
 // Afficher la liste des classes
-    .get('/Classes', ctrlGlobal.afficher_classe) // Pour Référent et Proviseur
+    .get('/Referent/Classes', ctrlGlobal.afficher_classe) // Pour Référent
+    .get('/Proviseur/Classes', ctrlGlobal.afficher_classe) // Pour Proviseur
 
 // Afficher la liste des eleves d'une classe
     .get('/Eleves_Classe/:id', ctrlGlobal.afficher_details_classe) // Pour Professeur et Proviseur
@@ -42,7 +43,7 @@ routeur.get('/', ctrlGlobal.page_de_connexion)
     // ------------------------ Pour Professeurs ----------------------- //
 
 // Afficher les classes d'un professeur
-    .get('/Classes/:id', ctrlProf.afficher_classe_prof)
+    .get('/MyClasses/:id', ctrlProf.afficher_classe_prof)
 
 // Affiche les notes d'un eleve dans une matiere
     .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)

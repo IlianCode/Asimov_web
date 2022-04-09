@@ -19,7 +19,7 @@ const getClasse_prof = async (idProf) => {
 
 const getNotes_Matiere = async (idEleve, idProf) => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT CONCAT(e.nom, " ", e.prenom) AS Nom, e.idEleve AS idEleve, n.idNote AS idNote, n.note AS note, m.idMatiere AS idMatiere , n.Titre AS titre FROM notes n';
+        let sql='SELECT CONCAT(e.nom, " ", e.prenom) AS Nom, e.idEleve, n.idNote AS idNote, n.note, m.idMatiere, n.Titre FROM notes n';
         sql +=' INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ? INNER JOIN matiere m ON n.Id_Matiere = m.idMatiere INNER JOIN professeur p ON p.Id_Matiere = m.idMatiere AND p.idProf = ?;'
         db.query(sql, [idEleve, idProf], (err, data, fields) => {
             if(err || data.length == 0){
