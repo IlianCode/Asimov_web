@@ -1,5 +1,4 @@
 const axios = require('axios');
-const { response } = require('..');
 
 // Affichage Menu //
 const page_de_connexion = (req, res) => {
@@ -18,20 +17,21 @@ const Connexion = (req, res) => {
     })
     .then((reponse) => {
         //On traite la suite une fois la réponse obtenue
-        let data = response.data[0];
+        let data = reponse.data[0];
         let id;
         if(table != 1){
             id = data.idProf
             if(data.Proviseur == 1){
                 res.redirect("/Classes")
             }else if(data.Referent == 1){
-                res.redirect("")
+                res.redirect("https://www.youtube.com/watch?v=5BohzauMGrE")
             }else{
                 res.redirect("")
             }
         }else{
             id = data.idEleve
-            res.redirect("")
+            console.log('connecté !')
+            res.redirect("http://localhost:3000/Asimov/Eleve/mesNotes/"+id)
         }
     })
     .catch((erreur) => {
@@ -39,6 +39,9 @@ const Connexion = (req, res) => {
         res.render('pageConnexion', {err : 1, msgErreur : "Identifiant ou mot de passe incorrect !"})
     })
 }
+
+
+
 
 // POUR : Référent et Proviseur //
 const afficher_classe = async (req, res) => {

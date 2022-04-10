@@ -64,7 +64,7 @@ const getNotes_Eleve = async (idEleve, Id_Eleve) => {
                 
                  'UNION ' +
             
-                 'SELECT n.idNote AS idNote, m.idMatiere AS idMatiere, m.nom AS Matiere, CONCAT(e.nom, " ", e.prenom) AS Nom, n.note AS note, n.dateNote AS date, n.Titre AS titre, null AS Moyenne FROM notes n ' +
+                 'SELECT n.idNote AS idNote, m.idMatiere AS idMatiere, m.nom AS Matiere, CONCAT(e.nom, " ", e.prenom) AS Nom, n.note AS note, DATE_FORMAT(n.dateNote, "%Y/%m/%d") AS date, n.Titre AS titre, null AS Moyenne FROM notes n ' +
                  'INNER JOIN matiere m ON m.idMatiere = n.Id_Matiere ' +
                  'INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ? ' +
                  ') AS OK;';

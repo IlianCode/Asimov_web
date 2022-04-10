@@ -8,6 +8,7 @@ const routeur = express.Router()
 
 // Ajout des controllers //
 const ctrlGlobal = require('../controllers/ctrlGlobal')
+const ctrlEleve = require('../controllers/ctrlEleve')
 const ctrlProf = require('../controllers/ctrlProf')
 const ctrlReferent = require('../controllers/ctrlReferent')
 const ctrlProviseur = require('../controllers/ctrlProviseur')
@@ -22,6 +23,8 @@ routeur.get('/', ctrlGlobal.page_de_connexion)
     
 // S'authentifier
     .post('/Authentification', ctrlGlobal.Connexion) // Pour tout le monde
+
+
 
 // Afficher la liste des classes
     .get('/Referent/Classes', ctrlGlobal.afficher_classe) // Pour Référent
@@ -39,13 +42,20 @@ routeur.get('/', ctrlGlobal.page_de_connexion)
 
 
 
+    // ------------------------ Pour Eleves ----------------------- //
+
+// Afficher ses notes (à l'élève)
+    .get('/Eleve/mesNotes/:id', ctrlEleve.page_des_notes)
+
+
+
 
     // ------------------------ Pour Professeurs ----------------------- //
 
 // Afficher les classes d'un professeur
     .get('/MyClasses/:id', ctrlProf.afficher_classe_prof)
 
-// Affiche les notes d'un eleve dans une matiere
+// Afficher les notes d'un eleve dans une matiere
     .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)
 
 // Supprimer une note
