@@ -71,7 +71,8 @@ const getNotes_Eleve = async (idEleve, Id_Eleve) => {
         db.query(sql, [idEleve, Id_Eleve], (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
-                reject("Aucune Notes trouvé !")
+                err = {msgErreur : "Aucune notes trouvé !"};
+                reject(err)
             }else{
                 resolve(data)
             }

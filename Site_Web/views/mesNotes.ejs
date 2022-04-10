@@ -3,32 +3,36 @@
     <title>Asimov : Mes notes</title>
 </head>
 <body id="body-mesNotes">
-    <h2><%=data[0].Nom%></h2>
-    <div>
-        <table>
-            <th style="padding-right: 50px;">Titre</th>
-            <th style="padding-right: 50px;">Date</th>
-            <th style="padding-right: 50px;">Note</th>
-            <% for (let i = 0;i<compteur;i++) { %> 
-                <% data.forEach((note) =>{%>
-                    <% if (note.idMatiere == tableMatiere[i]) {%>
-                        <% if (note.Moyenne != null){%>
-                            <tr>
-                                <th style="padding-right: 50px;">Matière : <%=note.Matiere%></th>
-                                <th>/</th>
-                                <th style="padding-right: 50px;">Moyenne : <%=note.Moyenne%></th>
-                            </tr>
-                        <%} else {%>
-                            <tr>
-                                <td style="padding-right: 50px;"><%=note.titre%></td>
-                                <td style="padding-right: 50px;"><%=moment(new Date(note.date)).calendar()%></td>
-                                <td style="padding-right: 50px;"><%=note.note%></td>
-                            </tr>
-                        <% } %>
-                    <% } %>    
-                <% }) %> 
-            <% } %> 
-        </table>
-    </div>
+    <% if (locals.err) { %>
+        <h1><%=err.msgErreur%></h1>
+    <% }else{ %> 
+        <h2><%=data[0].Nom%></h2>
+        <div>
+            <table>
+                <th style="padding-right: 50px;">Titre</th>
+                <th style="padding-right: 50px;">Date</th>
+                <th style="padding-right: 50px;">Note</th>
+                <% for (let i = 0;i<compteur;i++) { %> 
+                    <% data.forEach((note) =>{%>
+                        <% if (note.idMatiere == tableMatiere[i]) {%>
+                            <% if (note.Moyenne != null){%>
+                                <tr>
+                                    <th style="padding-right: 50px;">Matière : <%=note.Matiere%></th>
+                                    <th>/</th>
+                                    <th style="padding-right: 50px;">Moyenne : <%=note.Moyenne%></th>
+                                </tr>
+                            <%} else {%>
+                                <tr>
+                                    <td style="padding-right: 50px;"><%=note.titre%></td>
+                                    <td style="padding-right: 50px;"><%=moment(new Date(note.date)).calendar()%></td>
+                                    <td style="padding-right: 50px;"><%=note.note%></td>
+                                </tr>
+                            <% } %>
+                        <% } %>    
+                    <% }) %> 
+                <% } %> 
+            </table>
+        </div>
+    <% } %> 
 
 <%- include('footer') %>
