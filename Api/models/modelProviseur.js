@@ -92,12 +92,29 @@ const updateMatiere = async (idMatiere, nom) => {
         })
     })
 }
+//supprimer un professeur
+const deleteProf = async (idProf) => {
+    return new Promise((resolve, reject) => {
+        let sql="DELETE FROM professeur WHERE idProf = ?;"
 
+        db.query(sql, idProf, (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Suppression échouée")
+            }else{
+                resolve("Suppression réussi")
+            }
+        })
+    })
+}
 module.exports={
     getMatiere,
     getProf,
     newMatiere,
     newProf,
     deleteMatiere,
-    updateMatiere
+    updateMatiere,
+    deleteProf
 }
