@@ -87,11 +87,12 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 
    
 //créer un nouveau professeur 
-    .post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof_POST)
+    .post('/Ajout_Nouveau_Prof', ctrlProviseur.ajouter_Prof_POST)
     .get('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
 //supprimer un professeur
     .get('/Suppr_Prof/:idProf', ctrlProviseur.supprimer_Prof)
 //modifier un professeur
+    .post('/Modif_Prof', ctrlProviseur.modifier_Prof)
     .get('/Modif_Prof/:idProf/:nom/:prenom', ctrlProviseur.modifier_Prof)
 // Exportation //
 module.exports = routeur
