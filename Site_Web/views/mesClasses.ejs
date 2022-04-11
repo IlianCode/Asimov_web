@@ -1,0 +1,23 @@
+<%- include('header') %>
+
+        <title>Asimov : Mes Classes</title>
+    </head>
+    <body id="body-mesClasses">
+        <div>
+            <% if (ref === true) { %> 
+                <%- include('enTeteReferent') %>
+            <% }else{ %> 
+                <%- include('enTeteProf') %>
+            <% } %> 
+        </div>
+        <div>
+            <% if(locals.err) { %> 
+                <h1><%=err%></h1>
+            <% }else{ %> 
+                <% classes.forEach((classe) => {%> 
+                    <p><%=classe.nom%></p><a href=""><%=classe.idClasse%></a><br>
+                <% }) %> 
+            <% } %> 
+        </div>
+
+<%- include('footer') %>

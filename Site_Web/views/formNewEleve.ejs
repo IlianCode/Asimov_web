@@ -1,0 +1,29 @@
+<%- include('header') %>
+    <link rel="icon" href="/img/logo.png">
+    <script src="/controllers/ctrlGlobal.js"></script>
+    <title>Asimov : Page de connexion</title>
+</head>
+<body id="body-connexion">
+    <a href="/Asimov/Deco">Se déconnecter</a>
+    <div class="centrePage">
+        <div class="formulaire">
+            <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
+            <form action="/Asimov/Ajout_Nouvel_Eleve" method="POST">
+                <input name="nom" type="text" placeholder="Nom">
+                <input name="prenom" type="text" placeholder="Prénom">
+                <input name="mdp" type="password" placeholder="Mot de passe">
+                <select name="classe">
+                <% if (locals.err) { %>
+                <option value="false" selected><%=err.msgErreur%></option>
+                <% }else{ %>
+                    <% classes.forEach((classe) => {%> 
+                        <option value="<%=classe.idClasse%>"><%=classe.nom%></option>
+                    <% }) %> 
+                <% } %> 
+                </select>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+
+<%- include('footer') %>
