@@ -130,7 +130,7 @@ const updateProf = async (idProf, nom, prenom) => {
 //afficher toutes les notes
 const getNotes = async () => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT eleve.nom, eleve.prenom, matiere.nom, notes.note, notes.Titre from notes, matiere, eleve where Id_Matiere = idMatiere and Id_Eleve = idEleve order by idNote;';
+        let sql='SELECT notes.idNote, eleve.nom as nomEleve, eleve.prenom, matiere.nom, notes.note, notes.Titre from notes, matiere, eleve where Id_Matiere = idMatiere and Id_Eleve = idEleve order by idNote;';
 
         db.query(sql, (err, data, fields) => {
             if(err || data.length == 0){
