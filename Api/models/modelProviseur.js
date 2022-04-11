@@ -16,7 +16,7 @@ const getMatiere = async () => {
 
 const getProf = async () => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT p.idProf, CONCAT(p.nom, " ", p.prenom) AS Nom, m.IdMatiere FROM professeur p INNER JOIN matiere m ON m.idMatiere = p.Id_Matiere WHERE p.Proviseur = 0;';
+        let sql='SELECT p.idProf, p.nom, p.prenom FROM professeur p';
         db.query(sql, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
