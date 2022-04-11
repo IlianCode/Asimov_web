@@ -9,6 +9,8 @@ const page_de_connexion = (req, res) => {
 
 const deconnexion = (req, res) => {
     req.session.table = undefined;
+    req.session.referent = undefined;
+    req.session.proviseur = undefined;
     req.session.Id = undefined;
     res.render('pageConnexion')
 }
@@ -21,7 +23,7 @@ const Connexion = (req, res) => {
     axios({
         method: 'post',
         url: apiAdresse+'/Asimov/api/Authentification',
-        data: {table : table, pseudo : pseudo, mdp : mdp }
+        data: {table : table, pseudo : pseudo, mdp : mdp}
     })
     .then((reponse) => {
         //On traite la suite une fois la réponse obtenue
@@ -33,25 +35,23 @@ const Connexion = (req, res) => {
             req.session.Id = id;
             req.session.proviseur = 0;
             req.session.referent = 0;
-            if(data.Proviseur == 1){
-                req.session.proviseur = 1;
-                res.redirect("/Proviseur/Classes")
-            }else if(data.Referent == 1){
-                req.session.referent = 1;
-                res.redirect("/Referent/Classes")
+            if(data.Proviseur == 1 || data.Referent == 1){
+                req.session.proviseur = data.Proviseur;
+                req.session.referent = data.Referent;
+                res.redirect("/Asimov/Classes")
             }else{
-                res.redirect("/myClasses/"+id)
+                res.redirect("/Asimov/myClasses/"+id)
             }
         }else{
             console.log('connecté !')
             id = data.idEleve;
             req.session.Id = id;
-            res.redirect("http://localhost:3000/Asimov/Eleve/mesNotes/"+id)
+            res.redirect("/Asimov/Eleve/mesNotes/"+id)
         }
     })
     .catch((erreur) => {
         //On traite ici les erreurs éventuellement survenues
-        res.render('pageConnexion', {err : 1, msgErreur : "Identifiant ou mot de passe incorrect !"})
+        res.render('pageConnexion', {err : 1, msgErreur : "Aucune classe trouvé !"})
     })
 }
 
@@ -60,16 +60,16 @@ const Connexion = (req, res) => {
 
 // POUR : Référent et Proviseur //
 const afficher_classe = (req, res) => {
-    if(req.session.table != 1 && (req.session.Proviseur == 1 || req.session.Referent == 1)){
+    if(req.session.table != 1 && (req.session.proviseur == 1 || req.session.referent == 1)){
         axios.get(apiAdresse+'/Asimov/api/Classes')
             .then((reponse) => {
                 //On traite la suite une fois la réponse obtenue
                 let data = reponse.data;
                 console.log(data)
                 if(req.session.Proviseur == 1){
-                    res.render('listeClasses', {data : data})
+                    res.render('listeClasses', {classes : data})
                 }else{
-                    res.render('formNewEleve', {data : data})
+                    res.render('formNewEleve', {classes : data})
                 }
             })
             .catch((err) => {

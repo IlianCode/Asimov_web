@@ -27,6 +27,9 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 // S'authentifier
     .post('/Authentification', ctrlGlobal.Connexion) // OK
 
+// Afficher toutes les classes (Pour Proviseur et Referent)
+    .get('/Classes', ctrlGlobal.afficher_classe)
+
 
     // ------------------------ Pour Eleves ----------------------- //
 // Afficher ses notes (à l'élève)
@@ -87,11 +90,8 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 
 
     // ------------------------ Pour Référent --------------------------- //
-// Afficher (pour liste déroulante) toutes les classes
-    .get('/Classes', ctrlGlobal.afficher_classe)
-
 // Créer un nouvel eleve 
-    .post('/Ajout_Nouvel_Eleve/:pseudo/:mdp/:nom/:prenom/:Id_Classe', ctrlReferent.ajouter_new_eleve)
+    .post('/Ajout_Nouvel_Eleve', ctrlReferent.ajouter_new_eleve)
 
 
 // Exportation //
