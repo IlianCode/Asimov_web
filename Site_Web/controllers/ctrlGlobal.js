@@ -1,4 +1,4 @@
-const axios = require('axios'); 
+const axios = require('axios');
 const apiAdresse = "http://localhost:3001";
 
 // Affichage Menu //
@@ -65,6 +65,7 @@ const afficher_classe = (req, res) => {
             .then((reponse) => {
                 //On traite la suite une fois la réponse obtenue
                 let data = reponse.data;
+                console.log(data)
                 if(req.session.Proviseur == 1){
                     res.render('listeClasses', {data : data})
                 }else{
@@ -74,8 +75,11 @@ const afficher_classe = (req, res) => {
             .catch((err) => {
                 //On traite ici les erreurs éventuellement survenues
                 console.log('ALED');
-                err = err.response.data;
-                res.render('mesNotes', {err : err})
+                if(req.session.Proviseur == 1){
+                    res.render('listeClasses', {err : err})
+                }else{
+                    res.render('formNewEleve', {err : err})
+                }
             })
     }else{
         res.render("refused");
