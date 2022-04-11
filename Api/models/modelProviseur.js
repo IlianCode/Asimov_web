@@ -109,6 +109,23 @@ const deleteProf = async (idProf) => {
         })
     })
 }
+//modifier un professeur
+const updateProf = async (idProf, nom, prenom) => {
+    return new Promise((resolve, reject) => {
+        let sql="UPDATE professeur SET nom = ?, prenom = ? WHERE idProf = ?;"
+
+        db.query(sql, [nom, prenom, idProf], (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Modification échouée")
+            }else{
+                resolve("Modification réussi")
+            }
+        })
+    })
+}
 module.exports={
     getMatiere,
     getProf,
@@ -116,5 +133,6 @@ module.exports={
     newProf,
     deleteMatiere,
     updateMatiere,
-    deleteProf
+    deleteProf,
+    updateProf
 }
