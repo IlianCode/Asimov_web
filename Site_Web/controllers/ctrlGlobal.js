@@ -1,8 +1,15 @@
 const axios = require('axios'); 
-const session = require('cookie-session')
+const apiAdresse = "http://localhost:3001";
 
 // Affichage Menu //
 const page_de_connexion = (req, res) => {
+    req.session.table = 1;
+    res.render('pageConnexion')
+}
+
+const deconnexion = (req, res) => {
+    req.session.table = undefined;
+    req.session.Id = undefined;
     res.render('pageConnexion')
 }
 
@@ -13,34 +20,34 @@ const Connexion = (req, res) => {
 
     axios({
         method: 'post',
-        url: 'http://localhost:3001/Asimov/api/Authentification',
+        url: apiAdresse+'/Asimov/api/Authentification',
         data: {table : table, pseudo : pseudo, mdp : mdp }
     })
     .then((reponse) => {
         //On traite la suite une fois la réponse obtenue
         let data = reponse.data[0];
         let id;
+        req.session.table = table;
         if(table != 1){
             id = data.idProf;
+            req.session.Id = id;
             req.session.proviseur = 0;
             req.session.referent = 0;
             if(data.Proviseur == 1){
                 req.session.proviseur = 1;
-                res.redirect("/Classes")
+                res.redirect("/Proviseur/Classes")
             }else if(data.Referent == 1){
                 req.session.referent = 1;
-                res.redirect("https://www.youtube.com/watch?v=5BohzauMGrE")
+                res.redirect("/Referent/Classes")
             }else{
-                res.redirect("")
+                res.redirect("/myClasses/"+id)
             }
         }else{
             console.log('connecté !')
-            id = data.idEleve
+            id = data.idEleve;
+            req.session.Id = id;
             res.redirect("http://localhost:3000/Asimov/Eleve/mesNotes/"+id)
         }
-        req.session.id = id;
-        req.session.table = table;
-        console.log("session :"+req.session.table)
     })
     .catch((erreur) => {
         //On traite ici les erreurs éventuellement survenues
@@ -117,6 +124,7 @@ const modifier_note_eleve = async (req, res) => {
 // Exportation //
 module.exports = {
     page_de_connexion,
+    deconnexion,
     Connexion,
     afficher_classe,
     afficher_details_classe,

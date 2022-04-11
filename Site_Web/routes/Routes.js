@@ -17,18 +17,44 @@ const ctrlProviseur = require('../controllers/ctrlProviseur')
 // Enregistrement des routeurs
 
 
-    // ------------------------ Global --------------------------------- //
+    // -------------------------- Global --------------------------------- //
 // Afficher la page de connexion
-routeur.get('/', ctrlGlobal.page_de_connexion)
+routeur.get('/', ctrlGlobal.page_de_connexion) // OK
+
+// Déconnexion (fait expirer la session)
+    .get('/Deco', ctrlGlobal.deconnexion) // OK
     
 // S'authentifier
-    .post('/Authentification', ctrlGlobal.Connexion) // Pour tout le monde
+    .post('/Authentification', ctrlGlobal.Connexion) // OK
+
+
+    // ------------------------ Pour Eleves ----------------------- //
+// Afficher ses notes (à l'élève)
+    .get('/Eleve/mesNotes/:id', ctrlEleve.page_des_notes) // OK
+
+
+    // ------------------------ Pour Proviseur -------------------------- //
+// Afficher la liste des classes
+    .get('/Proviseur/Classes', ctrlGlobal.afficher_classe)
+
+
+    
+// Afficher les matieres
+    .get('/Matieres', ctrlProviseur.afficher_Matieres)
+
+// Afficher les professeurs
+    .get('/Professeurs', ctrlProviseur.afficher_Prof)
+
+// Céer une matiere 
+    .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
+
+// Créer des prof 
+    .post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
 
 
 
 // Afficher la liste des classes
     .get('/Referent/Classes', ctrlGlobal.afficher_classe) // Pour Référent
-    .get('/Proviseur/Classes', ctrlGlobal.afficher_classe) // Pour Proviseur
 
 // Afficher la liste des eleves d'une classe
     .get('/Eleves_Classe/:id', ctrlGlobal.afficher_details_classe) // Pour Professeur et Proviseur
@@ -38,14 +64,6 @@ routeur.get('/', ctrlGlobal.page_de_connexion)
 
 // Modifier une note 
     .post('/modif_Notes/:idNote/:note', ctrlGlobal.modifier_note_eleve)
-
-
-
-
-    // ------------------------ Pour Eleves ----------------------- //
-
-// Afficher ses notes (à l'élève)
-    .get('/Eleve/mesNotes/:id', ctrlEleve.page_des_notes)
 
 
 
@@ -72,24 +90,6 @@ routeur.get('/', ctrlGlobal.page_de_connexion)
 
 // Créer un nouvel eleve 
     .post('/Ajout_Nouvel_Eleve/:pseudo/:mdp/:nom/:prenom/:Id_Classe', ctrlReferent.ajouter_new_eleve)
-
-
-
-
-
-    // ------------------------ Pour Proviseur -------------------------- //
-// Afficher les matieres
-    .get('/Matieres', ctrlProviseur.afficher_Matieres)
-
-// Afficher les professeurs
-    .get('/Professeurs', ctrlProviseur.afficher_Prof)
-
-// Céer une matiere 
-    .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
-
-// Créer des prof 
-    .post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
-
 
 
 // Exportation //
