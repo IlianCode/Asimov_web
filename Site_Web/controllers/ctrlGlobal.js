@@ -1,4 +1,5 @@
-const axios = require('axios');
+const axios = require('axios'); 
+const session = require('cookie-session')
 
 // Affichage Menu //
 const page_de_connexion = (req, res) => {
@@ -20,19 +21,26 @@ const Connexion = (req, res) => {
         let data = reponse.data[0];
         let id;
         if(table != 1){
-            id = data.idProf
+            id = data.idProf;
+            req.session.proviseur = 0;
+            req.session.referent = 0;
             if(data.Proviseur == 1){
+                req.session.proviseur = 1;
                 res.redirect("/Classes")
             }else if(data.Referent == 1){
+                req.session.referent = 1;
                 res.redirect("https://www.youtube.com/watch?v=5BohzauMGrE")
             }else{
                 res.redirect("")
             }
         }else{
-            id = data.idEleve
             console.log('connecté !')
+            id = data.idEleve
             res.redirect("http://localhost:3000/Asimov/Eleve/mesNotes/"+id)
         }
+        req.session.id = id;
+        req.session.table = table;
+        console.log("session :"+req.session.table)
     })
     .catch((erreur) => {
         //On traite ici les erreurs éventuellement survenues
