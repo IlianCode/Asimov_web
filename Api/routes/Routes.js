@@ -94,5 +94,10 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 //modifier un professeur
     .post('/Modif_Prof', ctrlProviseur.modifier_Prof)
     .get('/Modif_Prof/:idProf/:nom/:prenom', ctrlProviseur.modifier_Prof)
+
+// ==========notes 
+
+//afficher toutes les notes
+    .get('/Notes', ctrlProviseur.afficher_Notes)
 // Exportation //
 module.exports = routeur
