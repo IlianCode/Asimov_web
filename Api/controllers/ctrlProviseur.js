@@ -180,7 +180,18 @@ const modifier_Prof_POST = async (req, res) => {
         res.status('404').json(err)
     })
 }
-
+//afficher toutes les notes
+const afficher_Notes = async (req, res) => {
+        
+        await db.getNotes()
+        .then((data) => {
+            console.log(data)
+            res.status('200').json(data)
+        }).catch((err) => {
+            console.log(err)
+            res.status('404').json(err)
+        })
+}
 // + Controller afficher_details_classe dans ctrlGlobal //
 
 // Exportation //
@@ -196,5 +207,6 @@ module.exports = {
     modifier_Matiere_POST,
     supprimer_Prof,
     modifier_Prof,
-    modifier_Prof_POST
+    modifier_Prof_POST,
+    afficher_Notes
 }
