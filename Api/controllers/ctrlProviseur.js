@@ -136,34 +136,51 @@ const modifier_Matiere_POST = async (req, res) => {
 //supprimer un professeur
 const supprimer_Prof = async (req, res) => {
         
-            let idProf = req.params.idProf;
+    let idProf = req.params.idProf;
         
-            await db.deleteProf(idProf)
-            .then((data) => {
-                console.log(data)
-                res.json()
-            }).catch((err) => {
-                console.log(err)
-                res.status('404').json(err)
-            })
+    await db.deleteProf(idProf)
+    .then((data) => {
+        console.log(data)
+        res.json()
+    }).catch((err) => {
+        console.log(err)
+        res.status('404').json(err)
+    })
 }
 //modifier un professeur
 const modifier_Prof = async (req, res) => {
             
-                let idProf = req.params.idProf;
-                let nom = req.params.nom;
-                let prenom = req.params.prenom;
-                
+    let idProf = req.params.idProf;
+    let nom = req.params.nom;
+    let prenom = req.params.prenom;         
             
-                await db.updateProf(idProf, nom, prenom)
-                .then((data) => {
-                    console.log(data)
-                    res.json()
-                }).catch((err) => {
-                    console.log(err)
-                    res.status('404').json(err)
-                })
+    await db.updateProf(idProf, nom, prenom)
+    .then((data) => {
+        console.log(data)
+        res.json()
+    }).catch((err) => {
+        console.log(err)
+        res.status('404').json(err)
+    })
 }
+
+//modifier un professeur
+const modifier_Prof_POST = async (req, res) => {
+            
+    let idProf = req.body.idProf;
+    let nom = req.body.nom;
+    let prenom = req.body.prenom;         
+            
+    await db.updateProf(idProf, nom, prenom)
+    .then((data) => {
+        console.log(data)
+        res.json()
+    }).catch((err) => {
+        console.log(err)
+        res.status('404').json(err)
+    })
+}
+
 // + Controller afficher_details_classe dans ctrlGlobal //
 
 // Exportation //
@@ -178,5 +195,6 @@ module.exports = {
     modifier_Matiere,
     modifier_Matiere_POST,
     supprimer_Prof,
-    modifier_Prof
+    modifier_Prof,
+    modifier_Prof_POST
 }
