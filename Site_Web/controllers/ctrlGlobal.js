@@ -59,17 +59,27 @@ const Connexion = (req, res) => {
 
 
 // POUR : Référent et Proviseur //
-const afficher_classe = async (req, res) => {
-
-    await db.getClasse()
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
+const afficher_classe = (req, res) => {
+    if(req.session.table != 1 && (req.session.Proviseur == 1 || req.session.Referent == 1)){
+        axios.get(apiAdresse+'/Asimov/api/Classes')
+            .then((reponse) => {
+                //On traite la suite une fois la réponse obtenue
+                let data = reponse.data;
+                if(req.session.Proviseur == 1){
+                    res.render('listeClasses', {data : data})
+                }else{
+                    res.render('formNewEleve', {data : data})
+                }
+            })
+            .catch((err) => {
+                //On traite ici les erreurs éventuellement survenues
+                console.log('ALED');
+                err = err.response.data;
+                res.render('mesNotes', {err : err})
+            })
+    }else{
+        res.render("refused");
+    }
 }
 
 // POUR : Professeur et Proviseur //
