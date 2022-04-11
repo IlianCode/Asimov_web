@@ -192,6 +192,38 @@ const afficher_Notes = async (req, res) => {
             res.status('404').json(err)
         })
 }
+
+//afficher tous les eleves
+const afficher_Eleves = async (req, res) => {
+            
+            await db.getEleves()
+            .then((data) => {
+                console.log(data)
+                res.status('200').json(data)
+            }).catch((err) => {
+                console.log(err)
+                res.status('404').json(err)
+            })
+}
+
+//ajouter note
+const ajouter_Notes_Date = async (req, res) => {
+                
+        let idEleve = req.params.idEleve;
+        let idMatiere = req.params.idMatiere;
+        let note = req.params.note;
+        let date = req.params.date;
+        let titre= req.params.titre;
+                
+        await db.newNote(idEleve, idMatiere, note, date,titre)
+        .then((data) => {
+            console.log(data)
+            res.json()
+        }).catch((err) => {
+            console.log(err)
+            res.status('404').json(err)
+        })
+}
 // + Controller afficher_details_classe dans ctrlGlobal //
 
 // Exportation //
@@ -208,5 +240,7 @@ module.exports = {
     supprimer_Prof,
     modifier_Prof,
     modifier_Prof_POST,
-    afficher_Notes
+    afficher_Notes,
+    afficher_Eleves,
+    ajouter_Notes_Date
 }

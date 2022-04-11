@@ -143,6 +143,36 @@ const getNotes = async () => {
     })
 }
 
+// afficher tous les eleves
+const getEleves = async () => {
+    return new Promise((resolve, reject) => {
+        let sql='SELECT idEleve, nom, prenom FROM eleve';
+
+        db.query(sql, (err, data, fields) => {
+            if(err || data.length == 0){
+                console.log(err)
+                reject("Aucun Eleve trouvé !")
+            }else{
+                resolve(data)
+            }
+        })
+    })
+}
+// ajouter note 
+const addNote = async (idEleve, idMatiere, note, date, titre) => {
+    return new Promise((resolve, reject) => {
+        let sql="INSERT INTO notes (Id_Eleve, Id_Matiere, note, date, Titre) VALUES (?,?,?,?,?);"
+
+        db.query(sql, [idEleve, idMatiere, note, date, titre], (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else{
+                resolve(data)
+            }
+        })
+    })
+}
 module.exports={
     getMatiere,
     getProf,
@@ -152,5 +182,7 @@ module.exports={
     updateMatiere,
     deleteProf,
     updateProf,
-    getNotes
+    getNotes,
+    getEleves,
+    addNote
 }

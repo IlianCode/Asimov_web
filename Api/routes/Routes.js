@@ -99,5 +99,9 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 
 //afficher toutes les notes
     .get('/Notes', ctrlProviseur.afficher_Notes)
+//afficher tous les eleves
+    .get('/Eleves', ctrlProviseur.afficher_Eleves)
+//ajouter notes 
+    .get('/Ajout_Notes_Date/:idEleve/:idMatiere/:note/:date/:titre', ctrlProviseur.ajouter_Notes_Date)
 // Exportation //
 module.exports = routeur
