@@ -92,6 +92,6 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 //supprimer un professeur
     .get('/Suppr_Prof/:idProf', ctrlProviseur.supprimer_Prof)
 //modifier un professeur
-    .get('/Modif_Prof/:idProf/:nom/:prenom/:idMatiere', ctrlProviseur.modifier_Prof)
+    .get('/Modif_Prof/:idProf/:nom/:prenom', ctrlProviseur.modifier_Prof)
 // Exportation //
 module.exports = routeur
