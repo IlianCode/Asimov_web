@@ -16,7 +16,7 @@ const getMatiere = async () => {
 
 const getProf = async () => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT p.idProf, p.nom, p.prenom FROM professeur p';
+        let sql='SELECT p.idProf, p.nom, p.prenom FROM professeur p WHERE p.Proviseur = 0 ';
         db.query(sql, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)
