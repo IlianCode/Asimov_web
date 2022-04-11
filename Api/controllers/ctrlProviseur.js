@@ -133,6 +133,37 @@ const modifier_Matiere_POST = async (req, res) => {
     })
 }
 
+//supprimer un professeur
+const supprimer_Prof = async (req, res) => {
+        
+            let idProf = req.params.idProf;
+        
+            await db.deleteProf(idProf)
+            .then((data) => {
+                console.log(data)
+                res.json()
+            }).catch((err) => {
+                console.log(err)
+                res.status('404').json(err)
+            })
+}
+//modifier un professeur
+const modifier_Prof = async (req, res) => {
+            
+                let idProf = req.params.idProf;
+                let nom = req.params.nom;
+                let prenom = req.params.prenom;
+                
+            
+                await db.updateProf(idProf, nom, prenom)
+                .then((data) => {
+                    console.log(data)
+                    res.json()
+                }).catch((err) => {
+                    console.log(err)
+                    res.status('404').json(err)
+                })
+}
 // + Controller afficher_details_classe dans ctrlGlobal //
 
 // Exportation //
@@ -145,5 +176,7 @@ module.exports = {
     ajouter_Prof_POST,
     supprimer_Matiere,
     modifier_Matiere,
-    modifier_Matiere_POST
+    modifier_Matiere_POST,
+    supprimer_Prof,
+    modifier_Prof
 }
