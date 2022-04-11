@@ -1,20 +1,5 @@
 
 
-const afficher_classe_prof = async (req, res) => {
-
-    let idProf = req.params.id;
-
-    await db.getClasse_prof(idProf)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
-}
-
 const afficher_note_eleve_matiere = async (req, res) => {
 
     let idProf = req.params.idProf;
@@ -68,7 +53,6 @@ const supprimer_note_eleve = async (req, res) => {
 
 // Exportation //
 module.exports = {
-    afficher_classe_prof, 
     afficher_note_eleve_matiere,
     ajouter_note_eleve_matiere,
     supprimer_note_eleve

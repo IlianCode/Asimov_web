@@ -74,7 +74,7 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     // ------------------------ Pour Professeurs ----------------------- //
 
 // Afficher les classes d'un professeur
-    .get('/MyClasses/:id', ctrlProf.afficher_classe_prof)
+    .get('/MyClasses/:id', ctrlGlobal.afficher_classe_prof)
 
 // Afficher les notes d'un eleve dans une matiere
     .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)

@@ -35,11 +35,11 @@ const Connexion = (req, res) => {
             req.session.Id = id;
             req.session.proviseur = 0;
             req.session.referent = 0;
-            if(data.Proviseur == 1 || data.Referent == 1){
+            if(data.Proviseur == 1){
                 req.session.proviseur = data.Proviseur;
-                req.session.referent = data.Referent;
                 res.redirect("/Asimov/Classes")
             }else{
+                req.session.referent = data.Referent;
                 res.redirect("/Asimov/myClasses/"+id)
             }
         }else{
@@ -66,20 +66,44 @@ const afficher_classe = (req, res) => {
                 //On traite la suite une fois la réponse obtenue
                 let data = reponse.data;
                 console.log(data)
-                if(req.session.Proviseur == 1){
+                if(req.session.proviseur == 1){
                     res.render('listeClasses', {classes : data})
                 }else{
-                    res.render('formNewEleve', {classes : data})
+                    res.render('formNewEleve', {classes : data, id : req.session.Id})
                 }
             })
             .catch((err) => {
                 //On traite ici les erreurs éventuellement survenues
                 console.log('ALED');
-                if(req.session.Proviseur == 1){
+                if(req.session.proviseur == 1){
                     res.render('listeClasses', {err : err})
                 }else{
                     res.render('formNewEleve', {err : err})
                 }
+            })
+    }else{
+        res.render("refused");
+    }
+}
+
+const afficher_classe_prof = async (req, res) => {
+    let id = req.params.id;
+    if(req.session.table != 1 && req.session.proviseur != 1 && id == req.session.Id){
+        axios.get(apiAdresse+'/Asimov/api/Classes/'+id)
+            .then((reponse) => {
+                //On traite la suite une fois la réponse obtenue
+                let data = reponse.data;
+                console.log(data)
+                if(req.session.referent == 1){
+                    res.render('mesClasses', {classes : data, id : req.session.Id, ref : true})
+                }else{
+                    res.render('mesClasses', {classes : data, id : req.session.Id, ref : false})
+                }
+            })
+            .catch((err) => {
+                //On traite ici les erreurs éventuellement survenues
+                console.log('ALED');
+                res.render('mesClasses', {err : "Aucune classes trouvé !", id : req.session.Id, ref : true})
             })
     }else{
         res.render("refused");
@@ -141,6 +165,7 @@ module.exports = {
     deconnexion,
     Connexion,
     afficher_classe,
+    afficher_classe_prof,
     afficher_details_classe,
     afficher_note_eleve,
     modifier_note_eleve
