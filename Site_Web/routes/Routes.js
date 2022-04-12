@@ -28,7 +28,10 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     .post('/Authentification', ctrlGlobal.Connexion) // OK
 
 // Afficher toutes les classes (Pour Proviseur et Referent)
-    .get('/Classes', ctrlGlobal.afficher_classe)
+    .get('/Classes', ctrlGlobal.afficher_classe) // OK
+
+// Afficher la liste des eleves d'une classe
+    .get('/Eleves_Classe/:idProf/:idClasse', ctrlGlobal.afficher_details_classe) // Pour Professeur et Proviseur
 
 
     // ------------------------ Pour Eleves ----------------------- //

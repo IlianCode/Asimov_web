@@ -1,6 +1,6 @@
 <%- include('header') %>
 
-        <title>Asimov : Mes Classes</title>
+        <title>Asimov : Eleves de la classe</title>
     </head>
     <body id="body-mesClasses">
         <div>
@@ -14,9 +14,10 @@
             <% if(locals.err) { %> 
                 <h1><%=err%></h1>
             <% }else{ %> 
-                <% classes.forEach((classe) => {%> 
-                    <p><%=classe.nom%></p><button></button><a href="/Asimov/Eleves_Classe/<%=idProf%>/<%=classe.idClasse%>">Détails</a>
-                <% }) %> 
+                    <% eleves.forEach((eleve) =>{ %> 
+                        <p><%=eleve.nom+" "+eleve.prenom%></p><a href="/Asimov/Notes_Matiere/<%=idProf%>/<%=eleve.idEleve%>">Notes</a>
+                    <% }) %> 
+     
             <% } %> 
         </div>
 
