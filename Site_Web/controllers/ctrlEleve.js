@@ -4,7 +4,7 @@ const apiAdresse = "http://localhost:3001";
 
 const page_des_notes = (req, res) => {
     let id = req.params.id;
-    if(req.session.table == 1 && req.session.Id == id){
+    if((req.session.table == 1 && req.session.Id == id) || req.session.proviseur == 1){
         axios.get(apiAdresse+'/Asimov/api/Afficher_Notes_Eleve/'+id)
         .then((reponse) => {
             //On traite la suite une fois la réponse obtenue
@@ -21,7 +21,11 @@ const page_des_notes = (req, res) => {
                     ok = true;
                 }
             }
-            res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moment : moment})
+            if(req.session.proviseur == 1){
+                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moment : moment, proviseur : true})
+            }else{
+                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moment : moment})
+            }
         })
         .catch((err) => {
             //On traite ici les erreurs éventuellement survenues

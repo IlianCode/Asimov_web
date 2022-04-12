@@ -27,12 +27,25 @@
                                     <td style="padding-right: 50px;"><%=note.titre%></td>
                                     <td style="padding-right: 50px;"><%=moment(new Date(note.date)).calendar()%></td>
                                     <td style="padding-right: 50px;"><%=note.note%></td>
+                                    <% if (locals.proviseur) { %> 
+                                        <td style="padding-right: 50px;"><a href="">Modif</a></td>
+                                        <td style="padding-right: 50px;"><a href="">Suppr</a></td>
+                                    <% } %> 
                                 </tr>
                             <% } %>
                         <% } %>    
                     <% }) %> 
                 <% } %> 
             </table>
+            <% if (locals.proviseur) { %> 
+                <form action="">
+                    <select name="" id="">
+                        <option value=""></option>
+                    </select>
+                    <input type="text">
+                    <input type="number">
+                </form>
+            <% } %> 
         </div>
     <% } %> 
 

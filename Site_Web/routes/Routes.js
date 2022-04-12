@@ -77,16 +77,19 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     // ------------------------ Pour Professeurs ----------------------- //
 
 // Afficher les classes d'un professeur
-    .get('/MyClasses/:id', ctrlGlobal.afficher_classe_prof) // OK
+    .get('/MyClasses/:id', ctrlProf.afficher_classe_prof) // OK
 
 // Afficher les notes d'un eleve dans une matiere
     .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)
 
 // Supprimer une note
-    .get('/Suppr_Notes/:idNote', ctrlProf.supprimer_note_eleve)
+    .get('/Suppr_Notes/:idClasse/:idEleve/:idNote', ctrlGlobal.supprimer_note_eleve_matiere)
 
-// Ajoute une note a un eleve dans une matiere precise + description de la note
-    .post('/Ajout_Notes_Matiere/:idMatiere/:idEleve/:titre/:note', ctrlProf.ajouter_note_eleve_matiere)
+// Ajouter une note a un eleve dans une matiere precise + description de la note
+    .post('/Ajout_Notes_Matiere', ctrlProf.ajouter_note_eleve_matiere) // OK
+
+// modifier une note a un eleve dans une matiere precise + description de la note
+    .post('/Modif_Matiere', ctrlProf.ajouter_note_eleve_matiere) 
 
 
 
