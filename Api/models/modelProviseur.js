@@ -174,6 +174,24 @@ const addNote = async (idEleve, idMatiere, note, date, titre) => {
         })
     })
 }
+
+//modifier nom classe 
+const updateClasse = async (idClasse, nom) => {
+    return new Promise((resolve, reject) => {
+        let sql="UPDATE classe SET nom = ? WHERE idClasse = ?;"
+
+        db.query(sql, [nom, idClasse], (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Modification échouée")
+            }else{
+                resolve("Modification réussi")
+            }
+        })
+    })
+}
 module.exports={
     getMatiere,
     getProf,
@@ -185,5 +203,6 @@ module.exports={
     updateProf,
     getNotes,
     getEleves,
-    addNote
+    addNote,
+    updateClasse
 }

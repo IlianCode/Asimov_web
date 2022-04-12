@@ -103,5 +103,9 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
     .get('/Eleves', ctrlProviseur.afficher_Eleves)
 //ajouter notes 
     .get('/Ajout_Notes_Date/:idEleve/:idMatiere/:note/:date/:titre', ctrlProviseur.ajouter_Notes_Date)
+
+//=================classe
+//modifier le nom d'une classe
+    .get('/Modif_Classe/:id/:nom', ctrlProviseur.modifier_Classe)
 // Exportation //
 module.exports = routeur

@@ -224,6 +224,22 @@ const ajouter_Notes_Date = async (req, res) => {
             res.status('404').json(err)
         })
 }
+
+//modifier nom classe 
+const modifier_Classe = async (req, res) => {
+                    
+            let idClasse = req.params.idClasse;
+            let nom = req.params.nom;
+                    
+            await db.updateClasse(idClasse, nom)
+            .then((data) => {
+                console.log(data)
+                res.json()
+            }).catch((err) => {
+                console.log(err)
+                res.status('404').json(err)
+            })  
+}
 // + Controller afficher_details_classe dans ctrlGlobal //
 
 // Exportation //
@@ -242,5 +258,6 @@ module.exports = {
     modifier_Prof_POST,
     afficher_Notes,
     afficher_Eleves,
-    ajouter_Notes_Date
+    ajouter_Notes_Date,
+    modifier_Classe
 }
