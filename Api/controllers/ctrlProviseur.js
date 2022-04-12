@@ -240,6 +240,52 @@ const modifier_Classe = async (req, res) => {
                 res.status('404').json(err)
             })  
 }
+
+//supprimer une classe
+const supprimer_Classe = async (req, res) => {
+                        
+                let idClasse = req.params.idClasse;
+                        
+                await db.deleteClasse(idClasse)
+                .then((data) => {
+                    console.log(data)
+                    res.json()
+                }).catch((err) => {
+                    console.log(err)
+                    res.status('404').json(err)
+                })
+}
+
+//créer nouvelle classe 
+const ajouter_Classe = async (req, res) => {
+                                
+    let nom = req.params.nom;
+                                
+    await db.newClasse(nom)
+    .then((data) => {
+        console.log(data)
+        res.json()
+    }).catch((err) => {
+        console.log(err)
+        res.status('404').json(err)
+    })
+}
+//afficher les eleves
+const afficher_Eleves_Proviseur = async (req, res) => {
+                                            
+                                            
+        await db.getElevesProviseur()
+        .then((data) => {
+            console.log(data)
+            res.status('200').json(data)
+        }).catch((err) => {
+            console.log(err)
+            res.status('404').json(err)
+        })  
+}
+
+
+
 // + Controller afficher_details_classe dans ctrlGlobal //
 
 // Exportation //
@@ -259,5 +305,8 @@ module.exports = {
     afficher_Notes,
     afficher_Eleves,
     ajouter_Notes_Date,
-    modifier_Classe
+    modifier_Classe,
+    supprimer_Classe,
+    ajouter_Classe,
+    afficher_Eleves_Proviseur
 }

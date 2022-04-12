@@ -95,9 +95,9 @@ const updateMatiere = async (idMatiere, nom) => {
 //supprimer un professeur
 const deleteProf = async (idProf) => {
     return new Promise((resolve, reject) => {
-        let sql="DELETE FROM professeur WHERE idProf = ?;"
+        let sql="DELETE FROM professeur WHERE idProf = "+ idProf +";"
 
-        db.query(sql, idProf, (err, data, fields) => {
+        db.query(sql, (err, data, fields) => {
             if(err){
                 console.log(err)
                 reject("Une erreur est survenue")
@@ -192,6 +192,54 @@ const updateClasse = async (idClasse, nom) => {
         })
     })
 }
+
+//supprimer une classe
+const deleteClasse = async (idClasse) => {
+    return new Promise((resolve, reject) => {
+        let sql="DELETE FROM classe WHERE idClasse = "+ idClasse +";"
+
+        db.query(sql, (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Suppression échouée")
+            }else{
+                resolve("Suppression réussi")
+            }
+        })
+    })
+}
+//créer une nouvelle classe
+const newClasse = async (nom) => {
+    return new Promise((resolve, reject) => {
+        let sql="INSERT INTO classe (nom) VALUES ('"+nom+"');"
+
+        db.query(sql, (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else{
+                resolve(data)
+            }
+        })
+    })
+}
+//afificher les eleves
+const getElevesProviseur = async () => {
+    return new Promise((resolve, reject) => {
+        let sql='SELECT eleve.idEleve, eleve.nom as nomEleve, eleve.prenom ,classe.nom as nomClasse FROM eleve, classe WHERE idClasse = Id_Classe ORDER BY idClasse';
+
+        db.query(sql, (err, data, fields) => {
+            if(err || data.length == 0){
+                console.log(err)
+                reject("Aucun Eleve trouvé !")
+            }else{
+                resolve(data)
+            }
+        })
+    })
+}
 module.exports={
     getMatiere,
     getProf,
@@ -204,5 +252,8 @@ module.exports={
     getNotes,
     getEleves,
     addNote,
-    updateClasse
+    updateClasse,
+    deleteClasse,
+    newClasse,
+    getElevesProviseur
 }

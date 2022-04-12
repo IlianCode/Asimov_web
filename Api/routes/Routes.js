@@ -106,6 +106,18 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 
 //=================classe
 //modifier le nom d'une classe
-    .get('/Modif_Classe/:id/:nom', ctrlProviseur.modifier_Classe)
+    .get('/Modif_Classe/:idClasse/:nom', ctrlProviseur.modifier_Classe)
+//supprimer une classe
+    .get('/Suppr_Classe/:idClasse', ctrlProviseur.supprimer_Classe)
+//créer une nouvelle classe 
+    .get('/Ajout_Nouvelle_Classe/:nom', ctrlProviseur.ajouter_Classe)
+//==================eleves
+//afficher les eleves 
+    .get('/Eleves', ctrlProviseur.afficher_Eleves_Proviseur)
+
+
+
+
+
 // Exportation //
 module.exports = routeur
