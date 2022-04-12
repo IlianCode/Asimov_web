@@ -120,14 +120,14 @@ const afficher_details_classe = async (req, res) => {
             .then((reponse) => {
                 //On traite la suite une fois la réponse obtenue
                 let data = reponse.data;
-                let idAccess = [];
+                req.session.idAccess = [];
                 for (let y = 0;y < data.length; y++){
-                    idAccess.push(data[y].idClasse)
+                    req.session.idAccess.push(data[y].idClasse)
                 }
                 let idClasse = req.params.idClasse;
                 req.session.autorised = false;
-                for (let i = 0; i < idAccess.length; i++){
-                    if (idClasse == idAccess[i]){
+                for (let i = 0; i < req.session.idAccess.length; i++){
+                    if (idClasse == req.session.idAccess[i]){
                         req.session.autorised = true;
                     }
                 }
@@ -169,18 +169,17 @@ const afficher_details_classe = async (req, res) => {
 
 // POUR : Eleve et Proviseur //
 const afficher_note_eleve = async (req, res) => {
-    
+    let idProf = req.params.idProf;
     let idEleve = req.params.idEleve;
 
-    await db.getNotes_Eleve(idEleve, idEleve)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
+    req.session.autorised = false;
+    for (let i = 0; i < req.session.idAccess.length; i++){
+        if (idClasse == req.session.idAccess[i]){
+            req.session.autorised = true;
+        }
+    }
+
+    
 }
 
 // POUR : Professeur et Proviseur //
