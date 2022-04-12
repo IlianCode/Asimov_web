@@ -56,15 +56,15 @@ const getEleve_classe = async (idClasse) => {
 // POUR : Eleve et Proviseur //
 const getNotes_Eleve = async (idEleve, Id_Eleve) => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT idNote, idMatiere, Matiere, Nom, note, date, titre, Moyenne FROM ( ' +
-                 'SELECT null AS idNote, m.idMatiere AS idMatiere, m.nom AS Matiere, CONCAT(e.nom, " ", e.prenom) AS Nom, null AS note, null AS date, null AS titre, Round(avg(n.note),2) AS Moyenne FROM notes n ' +
+        let sql='SELECT idNote, idMatiere, Matiere, nom, prenom, note, date, titre, Moyenne FROM ( ' +
+                 'SELECT null AS idNote, m.idMatiere AS idMatiere, m.nom AS Matiere, e.nom, e.prenom, null AS note, null AS date, null AS titre, Round(avg(n.note),2) AS Moyenne FROM notes n ' +
                  'INNER JOIN matiere m ON m.idMatiere = n.Id_Matiere ' +
                  'INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ? ' +
                  'GROUP BY Matiere, Nom ' +
                 
                  'UNION ' +
             
-                 'SELECT n.idNote AS idNote, m.idMatiere AS idMatiere, m.nom AS Matiere, CONCAT(e.nom, " ", e.prenom) AS Nom, n.note AS note, DATE_FORMAT(n.dateNote, "%Y/%m/%d") AS date, n.Titre AS titre, null AS Moyenne FROM notes n ' +
+                 'SELECT n.idNote AS idNote, m.idMatiere AS idMatiere, m.nom AS Matiere, e.nom AS nom, e.prenom AS prenom, n.note AS note, DATE_FORMAT(n.dateNote, "%Y/%m/%d") AS date, n.Titre AS titre, null AS Moyenne FROM notes n ' +
                  'INNER JOIN matiere m ON m.idMatiere = n.Id_Matiere ' +
                  'INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ? ' +
                  ') AS OK;';

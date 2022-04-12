@@ -66,7 +66,7 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     .get('/Eleves_Classe/:id', ctrlGlobal.afficher_details_classe) // Pour Professeur et Proviseur
 
 // Afficher toutes les notes de l'élève
-    .get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur
+    //.get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur
 
 // Modifier une note 
     .post('/modif_Notes/:idNote/:note', ctrlGlobal.modifier_note_eleve)

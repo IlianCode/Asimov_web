@@ -167,21 +167,6 @@ const afficher_details_classe = async (req, res) => {
 
 }
 
-// POUR : Eleve et Proviseur //
-const afficher_note_eleve = async (req, res) => {
-    let idProf = req.params.idProf;
-    let idEleve = req.params.idEleve;
-
-    req.session.autorised = false;
-    for (let i = 0; i < req.session.idAccess.length; i++){
-        if (idClasse == req.session.idAccess[i]){
-            req.session.autorised = true;
-        }
-    }
-
-    
-}
-
 // POUR : Professeur et Proviseur //
 const modifier_note_eleve = async (req, res) => {
 
@@ -207,6 +192,5 @@ module.exports = {
     afficher_classe,
     afficher_classe_prof,
     afficher_details_classe,
-    afficher_note_eleve,
     modifier_note_eleve
 }

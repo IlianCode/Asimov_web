@@ -19,7 +19,7 @@ const getClasse_prof = async (idProf) => {
 
 const getNotes_Matiere = async (idEleve, idProf) => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT e.nom, e.prenom, e.idEleve, n.idNote , n.note, m.idMatiere, n.Titre FROM notes n';
+        let sql='SELECT e.nom, e.prenom, e.idEleve, e.idClasse, n.idNote , n.note, m.idMatiere, n.Titre FROM notes n';
         sql +=' INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ? INNER JOIN matiere m ON n.Id_Matiere = m.idMatiere INNER JOIN professeur p ON p.Id_Matiere = m.idMatiere AND p.idProf = ?;'
         db.query(sql, [idEleve, idProf], (err, data, fields) => {
             if(err || data.length == 0){
