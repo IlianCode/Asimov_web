@@ -1,0 +1,35 @@
+<%- include('header') %>
+
+    <title>Asimov : Mes notes</title>
+</head>
+<body id="body-mesNotes">
+    <a href="/Asimov/Deco">Se déconnecter</a>
+    <% if (locals.err) { %>
+        <h1><%=err%></h1>
+    <% }else{ %> 
+        <h2><%=data[0].nom%> <%=data[0].prenom%></h2>
+        <div>
+            <table>
+                <tr>
+                    <th style="padding-right: 50px;">Titre</th>
+                    <th style="padding-right: 50px;">Date</th>
+                    <th style="padding-right: 50px;">Note</th>
+                </tr>
+                <tr>
+                    <th style="padding-right: 50px;">Matière : <%=data[0].Matiere%></th>
+                    <th>/</th>
+                    <th style="padding-right: 50px;">Moyenne : <%=data[0].Moyenne%></th>
+                </tr>
+                <% for (let z = 1; z < data.length; z++) =>{%>
+                        <tr>
+                            <td style="padding-right: 50px;"><%=data[i].titre%></td>
+                            <td style="padding-right: 50px;"><%=moment(new Date(data[i].date)).calendar()%></td>
+                            <td style="padding-right: 50px;"><%=data[i].note%></td>
+                        </tr>
+                    <% }) %>         
+            </table>
+        </div>
+
+<%- include('footer') %>
+
+    <% } %> 
