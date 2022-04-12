@@ -158,12 +158,13 @@ const getEleves = async () => {
         })
     })
 }
-// ajouter note 
+// ajouter note avec date choisis par le proviseur
 const addNote = async (idEleve, idMatiere, note, date, titre) => {
     return new Promise((resolve, reject) => {
-        let sql="INSERT INTO notes (Id_Eleve, Id_Matiere, note, date, Titre) VALUES (?,?,?,?,?);"
-
-        db.query(sql, [idEleve, idMatiere, note, date, titre], (err, data, fields) => {
+        let sql="INSERT INTO notes (Id_Matiere,Id_Eleve , Titre, dateNote,note ) VALUES (?,?,?,?,?);"
+       
+        db.query(sql, [idMatiere, idEleve,titre,  date, note], (err, data, fields) => {
+            console.log(date);
             if(err){
                 console.log(err)
                 reject("Une erreur est survenue")

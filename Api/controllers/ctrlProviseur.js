@@ -215,7 +215,7 @@ const ajouter_Notes_Date = async (req, res) => {
         let date = req.params.date;
         let titre= req.params.titre;
                 
-        await db.newNote(idEleve, idMatiere, note, date,titre)
+        await db.addNote(idEleve, idMatiere, note, date,titre)
         .then((data) => {
             console.log(data)
             res.json()
