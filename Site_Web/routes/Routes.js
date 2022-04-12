@@ -68,8 +68,11 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 // Afficher toutes les notes de l'élève
     //.get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur
 
+// Afficher formulaire de modification de note
+    .get('/formulaire_Modif_Note/:idClasse/:idEleve/:idNote', ctrlGlobal.formulaire_modif_note)
+
 // Modifier une note 
-    .post('/modif_Notes/:idNote/:note', ctrlGlobal.modifier_note_eleve)
+    .post('/Modif_Notes', ctrlGlobal.modifier_note_eleve)
 
 
 

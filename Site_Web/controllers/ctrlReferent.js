@@ -18,11 +18,11 @@ const ajouter_new_eleve = async (req, res) => {
         })
         .then((reponse) => {
             //On traite la suite une fois la réponse obtenue
-            res.render("evenement", { msg : "Insertion réussi !", id : req.session.Id })     
+            res.render("evenement", { msg : "Insertion réussi !", url : "/Asimov/myClasses/"+req.session.Id })     
         })
         .catch((erreur) => {
             //On traite ici les erreurs éventuellement survenues
-            res.render("evenement", { msg : "Une erreur est survenue !", id : req.session.Id }) 
+            res.render("evenement", { msg : "Une erreur est survenue !", url: "/Asimov/myClasses/"+req.session.Id }) 
         })
     }else{
         res.render("refused")

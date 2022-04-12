@@ -15,12 +15,12 @@ const deconnexion = (req, res) => { // (POUR : Tout le monde) //
     res.render('pageConnexion')
 }
 
-const Connexion = (req, res) => { // (POUR : Tout le monde) //
+const Connexion = async (req, res) => { // (POUR : Tout le monde) //
     let table = req.body.table;
     let pseudo = req.body.pseudo;
     let mdp = req.body.mdp;
 
-    axios({
+    await axios({
         method: 'post',
         url: apiAdresse+'/Asimov/api/Authentification',
         data: {table : table, pseudo : pseudo, mdp : mdp}
@@ -50,14 +50,14 @@ const Connexion = (req, res) => { // (POUR : Tout le monde) //
     })
     .catch((erreur) => {
         //On traite ici les erreurs éventuellement survenues
-        res.render('pageConnexion', {err : 1, msgErreur : "Aucune classe trouvé !"})
+        res.render('pageConnexion', {err : 1, msgErreur : "Erreur lors de l'authentification !"})
     })
 }
 
 
-const afficher_classe = (req, res) => { // (POUR : Référent et Proviseur) //
+const afficher_classe = async (req, res) => { // (POUR : Référent et Proviseur) //
     if(req.session.table != 1 && (req.session.proviseur == 1 || req.session.referent == 1)){
-        axios.get(apiAdresse+'/Asimov/api/Classes')
+        await axios.get(apiAdresse+'/Asimov/api/Classes')
             .then((reponse) => {
                 //On traite la suite une fois la réponse obtenue
                 let data = reponse.data;
@@ -143,10 +143,64 @@ const afficher_details_classe = async (req, res) => { // (POUR : Professeur et P
     }
 }
 
-const modifier_note_eleve = async (req, res) => {
+const formulaire_modif_note = async (req, res) => { // (POUR : Professeur et Proviseur) //
+    if (req.session.table != 1){
+        let idNote = req.params.idNote;
+        let idEleve = req.params.idEleve; 
+        let idClasse = req.params.idClasse;
+        if (req.session.referent == 1){
+            res.render("formModifNote", { idNote : idNote, idEleve : idEleve, idClasse : idClasse, ref : true })
+        }else{
+            res.render("formModifNote", { idNote : idNote, idEleve : idEleve, idClasse : idClasse, ref : false })
+        }
+    }else{
+        res.render("refused.ejs")
+    }
+    
+}
 
-    let idNote= req.params.idNote;
-
+const modifier_note_eleve = async (req, res) => { // (POUR : Professeur et Proviseur) //
+    if (req.session.proviseur == 1){
+        req.session.autorised = true;
+    }else if (req.session.table != 1){
+        let idClasse = req.body.idClasse;
+        req.session.autorised = false;
+        for (let i = 0; i < req.session.idAccess.length; i++){
+            if (idClasse == req.session.idAccess[i]){
+                req.session.autorised = true;
+            }
+        }
+    }else{
+        res.render("refused")
+    }
+    if (req.session.autorised == true){
+        let idNote = req.body.idNote;
+        let note = req.body.note;
+        let idEleve = req.body.idEleve;
+        await axios({
+            method: 'post',
+            url: apiAdresse+'/Asimov/api/modif_Notes',
+            data: {idNote : idNote, note : note}
+        })
+        .then((reponse) => {
+            //On traite la suite une fois la réponse obtenue
+            if (req.session.proviseur == 1){
+                res.render("evenement", { msg : "Modification réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+            }else{
+                res.render("evenement", { msg : "Modification réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+            }     
+        })
+        .catch((erreur) => {
+            //On traite ici les erreurs éventuellement survenues
+            if (req.session.proviseur == 1){
+                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+            }else{
+                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve }) 
+            }
+        })
+    }else{
+        res.render("refused")
+    }
 }
 
 const supprimer_note_eleve_matiere = async (req, res) => { // (POUR : Professeur et Proviseur) //
@@ -160,30 +214,31 @@ const supprimer_note_eleve_matiere = async (req, res) => { // (POUR : Professeur
                 req.session.autorised = true;
             }
         }
-        if (req.session.autorised == true){
-            let idEleve = req.params.idEleve;
-            let idNote = req.params.idNote;
+        
+    }else{
+        res.render("refused")
+    }
+    if (req.session.autorised == true){
+        let idEleve = req.params.idEleve;
+        let idNote = req.params.idNote;
 
-            await axios.get(apiAdresse+'/Asimov/api/Suppr_Notes_Matiere/'+idNote)
-            .then((reponse) => {
-                //On traite la suite une fois la réponse obtenue
-                if (req.session.proviseur == 1){
-                    res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
-                }else{
-                    res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
-                }     
-            })
-            .catch((erreur) => {
-                //On traite ici les erreurs éventuellement survenues
-                if (req.session.proviseur == 1){
-                    res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
-                }else{
-                    res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve }) 
-                }
-            })
-        }else{
-            res.render("refused")
-        }
+        await axios.get(apiAdresse+'/Asimov/api/Suppr_Notes_Matiere/'+idNote)
+        .then((reponse) => {
+            //On traite la suite une fois la réponse obtenue
+            if (req.session.proviseur == 1){
+                res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+            }else{
+                res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+            }     
+        })
+        .catch((erreur) => {
+            //On traite ici les erreurs éventuellement survenues
+            if (req.session.proviseur == 1){
+                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+            }else{
+                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve }) 
+            }
+        })
     }else{
         res.render("refused")
     }
@@ -196,6 +251,7 @@ module.exports = {
     Connexion,
     afficher_classe,
     afficher_details_classe,
+    formulaire_modif_note,
     modifier_note_eleve,
     supprimer_note_eleve_matiere
 }
