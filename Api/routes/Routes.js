@@ -113,10 +113,12 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
     .get('/Ajout_Nouvelle_Classe/:nom', ctrlProviseur.ajouter_Classe)
 //==================eleves
 //afficher les eleves 
-    .get('/Eleves', ctrlProviseur.afficher_Eleves_Proviseur)
+    .get('/ElevesProviseur', ctrlProviseur.afficher_Eleves_Proviseur)
+//supprimer un eleve
+    .get('/Suppr_Eleve/:idEleve', ctrlProviseur.supprimer_Eleve)
 
-
-
+//modifier un eleve 
+    .get('/Modif_Eleve/:idEleve/:nom/:prenom/:idClasse', ctrlProviseur.modifier_Eleve)
 
 
 // Exportation //

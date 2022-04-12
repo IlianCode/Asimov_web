@@ -240,6 +240,41 @@ const getElevesProviseur = async () => {
         })
     })
 }
+// supprimer un eleve 
+const deleteEleve = async (idEleve) => {
+    return new Promise((resolve, reject) => {
+        let sql="DELETE FROM eleve WHERE idEleve = "+ idEleve +";"
+
+        db.query(sql, (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Suppression échouée")
+            }else{
+                resolve("Suppression réussi")
+            }
+        })
+    })
+}
+
+//modifier un eleve 
+const updateEleve = async (idEleve, nom, prenom, idClasse) => {
+    return new Promise((resolve, reject) => {
+        let sql="UPDATE eleve SET nom = ?, prenom = ? , Id_Classe = ? WHERE idEleve = ?;"
+
+        db.query(sql, [nom, prenom, idClasse, idEleve], (err, data, fields) => {
+            if(err){
+                console.log(err)
+                reject("Une erreur est survenue")
+            }else if(data.affectedRows == 0){
+                reject("Modification échouée")
+            }else{
+                resolve("Modification réussi")
+            }
+        })
+    })
+}
 module.exports={
     getMatiere,
     getProf,
@@ -255,5 +290,7 @@ module.exports={
     updateClasse,
     deleteClasse,
     newClasse,
-    getElevesProviseur
+    getElevesProviseur,
+    deleteEleve,
+    updateEleve
 }

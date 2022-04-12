@@ -283,8 +283,37 @@ const afficher_Eleves_Proviseur = async (req, res) => {
             res.status('404').json(err)
         })  
 }
-
-
+//supprimer un eleve
+const supprimer_Eleve = async (req, res) => {
+                                        
+        let idEleve = req.params.idEleve;
+                                        
+        await db.deleteEleve(idEleve)
+        .then((data) => {
+            console.log(data)
+            res.json()
+        }).catch((err) => {
+            console.log(err)
+            res.status('404').json(err)
+        })
+}
+//modifier un eleve 
+const modifier_Eleve = async (req, res) => {
+                                                
+            let idEleve = req.params.idEleve;
+            let nom = req.params.nom;
+            let prenom = req.params.prenom;
+            let idClasse = req.params.idClasse;
+                                                
+            await db.updateEleve(idEleve, nom, prenom, idClasse)
+            .then((data) => {
+                console.log(data)
+                res.json()
+            }).catch((err) => {
+                console.log(err)
+                res.status('404').json(err)
+            })
+}
 
 // + Controller afficher_details_classe dans ctrlGlobal //
 
@@ -308,5 +337,7 @@ module.exports = {
     modifier_Classe,
     supprimer_Classe,
     ajouter_Classe,
-    afficher_Eleves_Proviseur
+    afficher_Eleves_Proviseur,
+    supprimer_Eleve,
+    modifier_Eleve
 }
