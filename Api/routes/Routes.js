@@ -11,6 +11,7 @@ const ctrlGlobal = require('../controllers/ctrlGlobal')
 const ctrlProf = require('../controllers/ctrlProf')
 const ctrlReferent = require('../controllers/ctrlReferent')
 const ctrlProviseur = require('../controllers/ctrlProviseur')
+const ctrlEleve = require('../controllers/ctrlEleve')
 
 
 // Enregistrement des routeurs
@@ -120,6 +121,9 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 //modifier un eleve 
     .get('/Modif_Eleve/:idEleve/:pseudo/:nom/:prenom/:idClasse', ctrlProviseur.modifier_Eleve)
 
-
+//=========================================================================
+//API POUR ELEVE 
+//afficher les notes d'un eleve
+    .get('/Notes_Eleve/:idEleve', ctrlEleve.afficher_Notes_Eleve)
 // Exportation //
 module.exports = routeur
