@@ -110,11 +110,11 @@ const deleteProf = async (idProf) => {
     })
 }
 //modifier un professeur
-const updateProf = async (idProf, nom, prenom) => {
+const updateProf = async (idProf,pseudo, nom, prenom) => {
     return new Promise((resolve, reject) => {
-        let sql="UPDATE professeur SET nom = ?, prenom = ? WHERE idProf = ?;"
+        let sql="UPDATE professeur SET pseudo = ?, nom = ?, prenom = ? WHERE idProf = ?;"
 
-        db.query(sql, [nom, prenom, idProf], (err, data, fields) => {
+        db.query(sql, [pseudo, nom, prenom, idProf], (err, data, fields) => {
             if(err){
                 console.log(err)
                 reject("Une erreur est survenue")
@@ -259,11 +259,11 @@ const deleteEleve = async (idEleve) => {
 }
 
 //modifier un eleve 
-const updateEleve = async (idEleve, nom, prenom, idClasse) => {
+const updateEleve = async (idEleve,pseudo, nom, prenom, idClasse) => {
     return new Promise((resolve, reject) => {
-        let sql="UPDATE eleve SET nom = ?, prenom = ? , Id_Classe = ? WHERE idEleve = ?;"
+        let sql="UPDATE eleve SET pseudo = ?, nom = ?, prenom = ? , Id_Classe = ? WHERE idEleve = ?;"
 
-        db.query(sql, [nom, prenom, idClasse, idEleve], (err, data, fields) => {
+        db.query(sql, [pseudo, nom, prenom, idClasse, idEleve], (err, data, fields) => {
             if(err){
                 console.log(err)
                 reject("Une erreur est survenue")

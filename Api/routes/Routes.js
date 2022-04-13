@@ -93,7 +93,7 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
     .get('/Suppr_Prof/:idProf', ctrlProviseur.supprimer_Prof)
 //modifier un professeur
     .post('/Modif_Prof', ctrlProviseur.modifier_Prof)
-    .get('/Modif_Prof/:idProf/:nom/:prenom', ctrlProviseur.modifier_Prof)
+    .get('/Modif_Prof/:idProf/:pseudo/:nom/:prenom', ctrlProviseur.modifier_Prof)
 
 // ==========notes 
 
@@ -118,7 +118,7 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
     .get('/Suppr_Eleve/:idEleve', ctrlProviseur.supprimer_Eleve)
 
 //modifier un eleve 
-    .get('/Modif_Eleve/:idEleve/:nom/:prenom/:idClasse', ctrlProviseur.modifier_Eleve)
+    .get('/Modif_Eleve/:idEleve/:pseudo/:nom/:prenom/:idClasse', ctrlProviseur.modifier_Eleve)
 
 
 // Exportation //

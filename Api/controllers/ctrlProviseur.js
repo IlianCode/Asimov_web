@@ -152,9 +152,10 @@ const modifier_Prof = async (req, res) => {
             
     let idProf = req.params.idProf;
     let nom = req.params.nom;
-    let prenom = req.params.prenom;         
+    let prenom = req.params.prenom;    
+    let pseudo = req.params.pseudo;     
             
-    await db.updateProf(idProf, nom, prenom)
+    await db.updateProf(idProf,pseudo, nom, prenom)
     .then((data) => {
         console.log(data)
         res.json()
@@ -304,8 +305,8 @@ const modifier_Eleve = async (req, res) => {
             let nom = req.params.nom;
             let prenom = req.params.prenom;
             let idClasse = req.params.idClasse;
-                                                
-            await db.updateEleve(idEleve, nom, prenom, idClasse)
+            let pseudo = nom+"."+prenom;                      
+            await db.updateEleve(idEleve,pseudo, nom, prenom, idClasse)
             .then((data) => {
                 console.log(data)
                 res.json()
