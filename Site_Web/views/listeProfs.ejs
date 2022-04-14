@@ -1,5 +1,5 @@
 <%- include('header') %>
-    <link rel="icon" href="/img/logo.png">
+    
     <title>Asimov : Matières</title>
 </head>
 <body>
@@ -9,8 +9,8 @@
     
     <div>
         
-        <% if(locals.err) { %> 
-            <h1><%=err%></h1>
+        <% if(locals.errProf) { %> 
+            <h1><%=errProf%></h1>
         <% }else{ %>
             <table>
                 <tr>
@@ -23,7 +23,22 @@
                         <td><%=prof.nom%> <%=prof.prenom%></td> <td><%=prof.nomMatiere%></td> <td><a href="">Modif</a></td> <td><a href="">Suppr</a></td>
                     </tr>
                 <% }) %>  
-            </table>  
+            </table> 
+            <form action="/Asimov/Ajout_Nouveau_Prof" method="post">
+                <input name="nom" type="text" placeholder="Nom">
+                <input name="prenom" type="text" placeholder="Prénom">
+                <input name="mdp" type="password" placeholder="Mot de passe">
+                <select name="idMatiere">
+                    <% if (locals.errMatiere) { %> 
+                    <option value="false"><%=errMatiere%></option>
+                    <% }else{ %>
+                        <% matieres.forEach((matiere) => {%>
+                            <option value="<%=matiere.idMatiere%>"><%=matiere.nom%></option>
+                        <% }) %>  
+                    <% } %> 
+                </select>
+                <input type="submit">
+            </form> 
     </div>
 
 <%- include('footer') %>

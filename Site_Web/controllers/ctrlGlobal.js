@@ -78,7 +78,11 @@ const afficher_classe = async (req, res) => { // (POUR : Référent et Proviseur
                 }
             })
     }else{
-        res.render("refused");
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        };
     }
 }
 
@@ -87,7 +91,11 @@ const afficher_details_classe = async (req, res) => { // (POUR : Professeur et P
     let idClasse = req.params.idClasse;
     let idProf = req.params.idProf;
     if (req.session.Id != idProf){
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }else{
         if(req.session.proviseur == 1){
             req.session.autorised = true;
@@ -142,7 +150,11 @@ const afficher_details_classe = async (req, res) => { // (POUR : Professeur et P
                     }
                 })
         }else{
+            if (req.session.Id > 0){
             res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
         }
     }
 }
@@ -175,7 +187,11 @@ const modifier_note_eleve = async (req, res) => { // (POUR : Professeur et Provi
             }
         }
     }else{
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
     if (req.session.autorised == true){
         let idNote = req.body.idNote;
@@ -203,7 +219,11 @@ const modifier_note_eleve = async (req, res) => { // (POUR : Professeur et Provi
             }
         })
     }else{
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
 }
 
@@ -220,7 +240,11 @@ const supprimer_note_eleve_matiere = async (req, res) => { // (POUR : Professeur
         }
         
     }else{
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
     if (req.session.autorised == true){
         let idEleve = req.params.idEleve;
@@ -244,7 +268,11 @@ const supprimer_note_eleve_matiere = async (req, res) => { // (POUR : Professeur
             }
         })
     }else{
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        } 
     }
 }
 

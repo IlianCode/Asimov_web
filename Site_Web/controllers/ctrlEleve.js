@@ -39,7 +39,11 @@ const page_des_notes = (req, res) => {
             res.render('mesNotes', {err : err})
         })
     }else{
-        res.render('refused')
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }  
 }
 

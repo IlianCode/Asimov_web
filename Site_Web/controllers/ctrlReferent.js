@@ -25,7 +25,11 @@ const ajouter_new_eleve = async (req, res) => {
             res.render("evenement", { msg : "Une erreur est survenue !", url: "/Asimov/myClasses/"+req.session.Id }) 
         })
     }else{
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
 }
 

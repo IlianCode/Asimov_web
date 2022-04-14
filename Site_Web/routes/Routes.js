@@ -53,7 +53,7 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
 
 // Créer des prof 
-    .post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
+    .post('/Ajout_Nouveau_Prof', ctrlProviseur.ajouter_Prof)
 
 // Afficher toutes les notes de l'élève
     //.get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur

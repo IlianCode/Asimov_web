@@ -17,7 +17,11 @@ const afficher_Matieres = async (req, res) => {
             res.render('listeMatieres', {err : "Aucune matiere trouvée"})
         })
     }else{
-        res.render('refused')
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
 }
 
@@ -29,15 +33,30 @@ const afficher_Prof = async (req, res) => {
             //On traite la suite une fois la réponse obtenue
             let data = reponse.data;
             console.log(data)
-            res.render('listeProfs', {profs : data})
+            req.session.prof = data;
         })
         .catch((err) => {
             //On traite ici les erreurs éventuellement survenues
             console.log('ALED');
-            res.render('listeProfs', {err : "Aucun professeur trouvé !"})
+            req.session.profErr = "Aucun professeur trouvé !";
+        })
+        await axios.get(apiAdresse+'/Asimov/api/Matieres')
+        .then((reponse) => {
+            //On traite la suite une fois la réponse obtenue
+            let Matieres = reponse.data;
+            res.render('listeProfs', {profs : req.session.prof, matieres : Matieres})
+        })
+        .catch((err) => {
+            //On traite ici les erreurs éventuellement survenues
+            console.log('ALED');
+            res.render('listeProfs', {errMatiere : "Aucun professeur trouvé !", errProf : req.session.profErr})
         })
     }else{
-        res.render('refused')
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
 }
 
@@ -57,22 +76,33 @@ const ajouter_Matiere = async (req, res) => {
 }
 
 const ajouter_Prof = async (req, res) => {
+    if(req.session.proviseur == 1){
+        let mdp = req.body.mdp;
+        let nom = req.body.nom;
+        let prenom = req.body.prenom;
+        let idMatiere = req.body.idMatiere;
+        let pseudo = nom+"."+prenom;
 
-    let pseudo = req.params.pseudo;
-    let mdp = req.params.mdp;
-    let nom = req.params.nom;
-    let prenom = req.params.prenom;
-    let idMatiere = req.params.idMatiere;
-
-    await db.newProf(pseudo, mdp, nom, prenom, idMatiere)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
+        axios({
+            method: 'post',
+            url: apiAdresse+'/Asimov/api/Ajout_Nouveau_Prof',
+            data: {nom : nom, prenom : prenom, idMatiere : idMatiere, pseudo : pseudo, mdp : mdp}
+        })
+        .then((reponse) => {
+            //On traite la suite une fois la réponse obtenue
+            res.render("evenement", { msg : "Insertion réussi !", url : "/Asimov/Professeurs" })     
+        })
+        .catch((erreur) => {
+            //On traite ici les erreurs éventuellement survenues
+            res.render("evenement", { msg : "Une erreur est survenue !", url: "/Asimov/Professeurs" }) 
+        })
+    }else{
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
+    }
 }
 
 // + Controller afficher_details_classe dans ctrlGlobal //

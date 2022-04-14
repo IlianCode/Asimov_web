@@ -21,7 +21,11 @@ const afficher_classe_prof = async (req, res) => { // (POUR : Référent et Prov
                 res.render('mesClasses', {err : "Aucune classes trouvé !", idProf : req.session.Id, ref : true})
             })
     }else{
-        res.render("refused");
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        };
     }
 }
 
@@ -54,7 +58,11 @@ const afficher_note_eleve_matiere = async (req, res) => {
                         res.render('notesMatiere', {data : data, moyenne : moyenne, idProf : req.session.Id, ref : false, moment : moment})
                     }
                 }else{
-                    res.render("refused")
+                    if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
                 }
             })
             .catch((err) =>{
@@ -66,7 +74,11 @@ const afficher_note_eleve_matiere = async (req, res) => {
                 }
             })
     }else{
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
 }
 
@@ -101,10 +113,18 @@ const ajouter_note_eleve_matiere = async (req, res) => {
             })
 
         }else{
+            if (req.session.Id > 0){
             res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
         }
     }else{
-        res.render("refused")
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
     }
 }
 
