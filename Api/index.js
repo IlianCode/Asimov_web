@@ -3,7 +3,6 @@
 const express = require('express') 
 const mysql = require('mysql')
 const iniparser = require('iniparser')
-const http = require('http')
 const Routeur = require('./routes/Routes')
 
 // activation des dépendances 

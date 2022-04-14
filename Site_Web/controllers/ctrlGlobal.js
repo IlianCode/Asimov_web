@@ -45,7 +45,7 @@ const Connexion = async (req, res) => { // (POUR : Tout le monde) //
             console.log('connecté !')
             id = data.idEleve;
             req.session.Id = id;
-            res.redirect("/Asimov/Eleve/mesNotes/"+id)
+            res.redirect("/Asimov/Notes/Eleve/"+id)
         }
     })
     .catch((erreur) => {
@@ -61,9 +61,9 @@ const afficher_classe = async (req, res) => { // (POUR : Référent et Proviseur
             .then((reponse) => {
                 //On traite la suite une fois la réponse obtenue
                 let data = reponse.data;
-                console.log(data)
+                
                 if(req.session.proviseur == 1){
-                    res.render('listeClasses', {classes : data})
+                    res.render('listeClasses', {classes : data, id : req.session.Id})
                 }else{
                     res.render('formNewEleve', {classes : data, id : req.session.Id})
                 }
@@ -85,7 +85,7 @@ const afficher_classe = async (req, res) => { // (POUR : Référent et Proviseur
 
 const afficher_details_classe = async (req, res) => { // (POUR : Professeur et Proviseur) //
     let idClasse = req.params.idClasse;
-    let idProf = req.params.idProf
+    let idProf = req.params.idProf;
     if (req.session.Id != idProf){
         res.render("refused")
     }else{
@@ -122,17 +122,21 @@ const afficher_details_classe = async (req, res) => { // (POUR : Professeur et P
                 .then((reponse) => {
                     //On traite la suite une fois la réponse obtenue
                     let data = reponse.data;
-                    console.log(data)
+                    
                     if(req.session.referent == 1){
-                        res.render("eleveClasse", {eleves : data, idProf : req.session.Id, ref : true})
+                        res.render("eleveClasse", {eleves : data, idProf : req.session.Id, ref : true, prov : false})
+                    }else if (req.session.proviseur == 1){
+                        res.render("eleveClasse", {eleves : data, idProf : req.session.Id, ref : false, prov : true})
                     }else{
-                        res.render("eleveClasse", {eleves : data, idProf : req.session.Id, ref : false})
+                        res.render("eleveClasse", {eleves : data, idProf : req.session.Id, ref : false, prov : false})
                     }
                 })
                 .catch((err) =>{
                     console.log('ALED');
                     if(req.session.referent == 1){
                         res.render("eleveClasse", {err : "Aucun Elève trouvé !", idProf : req.session.Id, ref : true})
+                    }else if (req.session.proviseur == 1){
+                        res.render("eleveClasse", {eleves : data, idProf : req.session.Id, ref : false, prov : true})
                     }else{
                         res.render("eleveClasse", {err : "Aucun Elève trouvé !", idProf : req.session.Id, ref : false})
                     }

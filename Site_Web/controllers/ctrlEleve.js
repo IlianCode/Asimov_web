@@ -11,20 +11,25 @@ const page_des_notes = (req, res) => {
             let data = reponse.data;
             let ok = false;
             let compteur = 0;
+            let moyGeneral = 0;
             let tableIdMatiere = [];
 
             while(ok != true){
                 if(data[compteur].Moyenne != null){
                     tableIdMatiere.push(data[compteur].idMatiere)
+                    moyGeneral += data[compteur].Moyenne;
                     compteur++
                 }else{
+                    moyGeneral /= compteur;
+                    moyGeneral = moyGeneral.toFixed(2);
                     ok = true;
                 }
             }
+
             if(req.session.proviseur == 1){
-                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moment : moment, proviseur : true})
+                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moyGeneral : moyGeneral, moment : moment, proviseur : true})
             }else{
-                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moment : moment})
+                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moyGeneral : moyGeneral, moment : moment})
             }
         })
         .catch((err) => {

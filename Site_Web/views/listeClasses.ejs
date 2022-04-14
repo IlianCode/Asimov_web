@@ -1,12 +1,20 @@
 <%- include('header') %>
     <link rel="icon" href="/img/logo.png">
-    <script src="/controllers/ctrlGlobal.js"></script>
-    <title>Asimov : Page de connexion</title>
+    <title>Asimov : Classes</title>
 </head>
-<body id="body-connexion">
-    <a href="/Asimov/Deco">Se déconnecter</a>
-    <div class="centrePage">
-        
+<body>
+    <div>
+        <%- include('enTeteProviseur') %>
+    </div>
+    
+    <div>
+        <% if(locals.err) { %> 
+            <h1><%=err%></h1>
+        <% }else{ %> 
+            <% classes.forEach((classe) => {%> 
+                <p><%=classe.nom%></p><a href="/Asimov/Eleves_Classe/<%=id%>/<%=classe.idClasse%>">Détails</a>
+            <% }) %>    
     </div>
 
 <%- include('footer') %>
+        <% } %> 

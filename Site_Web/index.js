@@ -15,7 +15,11 @@ app.use(express.static('views'))
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-app.use(session({secret: 'quiEstTu?ProfRefProv|Eleve'}))
+app.use(session({
+  secret: 'quiEstTu?ProfRefProv|Eleve',
+  resave: false,
+  saveUninitialized: true
+}))
 
 // Définition du port de l'application  
 const port = process.env.port || 3000

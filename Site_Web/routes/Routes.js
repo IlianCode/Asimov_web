@@ -36,12 +36,10 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 
     // ------------------------ Pour Eleves ----------------------- //
 // Afficher ses notes (à l'élève)
-    .get('/Eleve/mesNotes/:id', ctrlEleve.page_des_notes) // OK
+    .get('/Notes/Eleve/:id', ctrlEleve.page_des_notes) // OK
 
 
     // ------------------------ Pour Proviseur -------------------------- //
-// Afficher la liste des classes
-    .get('/Proviseur/Classes', ctrlGlobal.afficher_classe)
 
 
     

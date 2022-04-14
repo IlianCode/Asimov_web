@@ -35,7 +35,7 @@ const afficher_note_eleve_matiere = async (req, res) => {
                 //On traite la suite une fois la réponse obtenue
                 let data = reponse.data; 
                 let moyenne = 0;
-                console.log(data)
+                
                 req.session.autorised = false;
                 for (let i = 0; i < req.session.idAccess.length; i++){
                     if (data[0].Id_Classe == req.session.idAccess[i]){

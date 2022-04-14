@@ -7,7 +7,8 @@
     <% if (locals.err) { %>
         <h1><%=err.msgErreur%></h1>
     <% }else{ %> 
-        <h2><%=data[0].nom%> <%=data[0].prenom%></h2>
+        <h2>Notes de l'élève : <%=data[0].nom%> <%=data[0].prenom%></h2>
+        <h3>Moyenne Générale: <%=moyGeneral%></h3>
         <div>
             <table>
                 <th style="padding-right: 50px;">Titre</th>
@@ -37,15 +38,6 @@
                     <% }) %> 
                 <% } %> 
             </table>
-            <% if (locals.proviseur) { %> 
-                <form action="">
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
-                    <input type="text">
-                    <input type="number">
-                </form>
-            <% } %> 
         </div>
     <% } %> 
 
