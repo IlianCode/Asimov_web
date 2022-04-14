@@ -143,7 +143,7 @@ const modif_Prof = async (req, res) => {
         })
         .then((reponse) => {
             //On traite la suite une fois la réponse obtenue
-            res.render("evenement", { msg : "Insertion réussi !", url : "/Asimov/Professeurs" })     
+            res.render("evenement", { msg : "Modification réussi !", url : "/Asimov/Professeurs" })     
         })
         .catch((erreur) => {
             //On traite ici les erreurs éventuellement survenues
@@ -183,7 +183,7 @@ const modif_Matiere = async (req, res) => {
         })
         .then((reponse) => {
             //On traite la suite une fois la réponse obtenue
-            res.render("evenement", { msg : "Insertion réussi !", url : "/Asimov/Matieres" })     
+            res.render("evenement", { msg : "Modification réussi !", url : "/Asimov/Matieres" })     
         })
         .catch((erreur) => {
             //On traite ici les erreurs éventuellement survenues
@@ -199,11 +199,47 @@ const modif_Matiere = async (req, res) => {
 }
 
 const suppr_Prof = async (req, res) => {
+    if(req.session.proviseur == 1){
+        let idProf = req.params.idProf;
 
+        await axios.get(apiAdresse+'/Asimov/api/Suppr_Prof/'+idProf)
+        .then((reponse) => {
+            //On traite la suite une fois la réponse obtenue
+            res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Professeurs" })     
+        })
+        .catch((erreur) => {
+            //On traite ici les erreurs éventuellement survenues
+            res.render("evenement", { msg : "Une erreur est survenue !", url: "/Asimov/Professeurs" }) 
+        })
+    }else{
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
+    }
 }
 
 const suppr_Matiere = async (req, res) => {
-    
+    if(req.session.proviseur == 1){
+        let idMatiere = req.params.idMatiere;
+
+        await axios.get(apiAdresse+'/Asimov/api/Suppr_Matiere/'+idMatiere)
+        .then((reponse) => {
+            //On traite la suite une fois la réponse obtenue
+            res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Matieres" })     
+        })
+        .catch((erreur) => {
+            //On traite ici les erreurs éventuellement survenues
+            res.render("evenement", { msg : "Une erreur est survenue !", url: "/Asimov/Matieres" }) 
+        })
+    }else{
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
+    }
 }
 // + Controller afficher_details_classe dans ctrlGlobal //
 

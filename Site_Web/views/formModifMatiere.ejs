@@ -1,0 +1,23 @@
+<%- include('header') %>
+    
+    <script src="/controllers/ctrlGlobal.js"></script>
+    <title>Asimov : Page de connexion</title>
+</head>
+<body id="body-connexion">
+    <div>
+        <%- include('enTeteProviseur') %>
+    </div>
+
+    <div class="centrePage">
+        <div class="formulaire">
+            <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
+            <h2>Modification d'une matière</h2>
+            <form action="/Asimov/Modif_Matiere" method="POST">
+                <input name="nom" type="text" placeholder="Nom">
+                <input name="idMatiere" value="<%=idMatiere%>" type="hidden">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+
+<%- include('footer') %>
