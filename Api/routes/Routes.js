@@ -93,7 +93,7 @@ routeur.post('/Authentification', ctrlGlobal.Connexion_POST) // Pour tout le mon
 //supprimer un professeur
     .get('/Suppr_Prof/:idProf', ctrlProviseur.supprimer_Prof)
 //modifier un professeur
-    .post('/Modif_Prof', ctrlProviseur.modifier_Prof)
+    .post('/Modif_Prof', ctrlProviseur.modifier_Prof_POST)
     .get('/Modif_Prof/:idProf/:pseudo/:nom/:prenom', ctrlProviseur.modifier_Prof)
 
 // ==========notes 

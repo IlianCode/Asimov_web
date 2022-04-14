@@ -55,14 +55,27 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 // Créer des prof 
     .post('/Ajout_Nouveau_Prof', ctrlProviseur.ajouter_Prof) // OK
 
-// Afficher toutes les notes de l'élève
-    //.get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur
-
 // Afficher formulaire de modification de note
     .get('/formulaire_Modif_Note/:idClasse/:idEleve/:idNote', ctrlGlobal.formulaire_modif_note) // OK
 
+    .get('/formulaire_modif_Prof/:idProf', ctrlProviseur.formulaire_modif_prof) // OK
+
+    .get('/formulaire_modif_Matiere/:idMatiere', ctrlProviseur.formulaire_modif_matiere) // OK
+
 // Modifier une note 
     .post('/Modif_Notes', ctrlGlobal.modifier_note_eleve) // OK
+
+// Supprimer une matière
+    .get('/Suppr_Matiere/:idMatiere', ctrlProviseur.suppr_Matiere)
+
+//modifier une matiere
+    .post('/Modif_Matiere', ctrlProviseur.modif_Matiere)
+
+// Supprimer un professeur
+    .get('/Suppr_Prof/:idProf', ctrlProviseur.suppr_Prof)
+
+//modifier un professeur
+    .post('/Modif_Prof', ctrlProviseur.modif_Prof)
 
 
 
@@ -80,9 +93,6 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 
 // Ajouter une note a un eleve dans une matiere precise + description de la note
     .post('/Ajout_Notes_Matiere', ctrlProf.ajouter_note_eleve_matiere) // OK
-
-// modifier une note a un eleve dans une matiere precise + description de la note
-    .post('/Modif_Matiere', ctrlProf.ajouter_note_eleve_matiere) 
 
 
 

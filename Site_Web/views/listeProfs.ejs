@@ -20,7 +20,7 @@
 
                 <% profs.forEach((prof) => {%> 
                     <tr>
-                        <td><%=prof.nom%> <%=prof.prenom%></td> <td><%=prof.nomMatiere%></td> <td><a href="">Modif</a></td> <td><a href="">Suppr</a></td>
+                        <td><%=prof.nom%> <%=prof.prenom%></td> <td><%=prof.nomMatiere%></td> <td><a href="/Asimov/formulaire_modif_Prof/<%=prof.idProf%>">Modif</a></td> <td><a href="">Suppr</a></td>
                     </tr>
                 <% }) %>  
             </table> 

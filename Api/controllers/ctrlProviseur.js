@@ -170,9 +170,10 @@ const modifier_Prof_POST = async (req, res) => {
             
     let idProf = req.body.idProf;
     let nom = req.body.nom;
-    let prenom = req.body.prenom;         
+    let prenom = req.body.prenom; 
+    let pseudo = req.body.pseudo;        
             
-    await db.updateProf(idProf, nom, prenom)
+    await db.updateProf(idProf, pseudo, nom, prenom)
     .then((data) => {
         console.log(data)
         res.json()
