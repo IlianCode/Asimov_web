@@ -1,0 +1,30 @@
+<%- include('header') %>
+    <link rel="icon" href="/img/logo.png">
+    <title>Asimov : Matières</title>
+</head>
+<body>
+    <div>
+        <%- include('enTeteProviseur') %>
+    </div>
+    
+    <div>
+        
+        <% if(locals.err) { %> 
+            <h1><%=err%></h1>
+        <% }else{ %>
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Matiere</th>
+                </tr>
+
+                <% profs.forEach((prof) => {%> 
+                    <tr>
+                        <td><%=prof.nom%> <%=prof.prenom%></td> <td><%=prof.nomMatiere%></td> <td><a href="">Modif</a></td> <td><a href="">Suppr</a></td>
+                    </tr>
+                <% }) %>  
+            </table>  
+    </div>
+
+<%- include('footer') %>
+        <% } %> 

@@ -1,0 +1,30 @@
+<%- include('header') %>
+    <link rel="icon" href="/img/logo.png">
+    <title>Asimov : Matières</title>
+</head>
+<body>
+    <div>
+        <%- include('enTeteProviseur') %>
+    </div>
+    
+    <div>
+        
+        <% if(locals.err) { %> 
+            <h1><%=err%></h1>
+        <% }else{ %>
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Nombre de professeurs</th>
+                </tr>
+
+                <% matieres.forEach((matiere) => {%> 
+                    <tr>
+                        <td><%=matiere.nom%></td> <td><%=matiere.nbProf%></td> <td><a href="">Modif</a></td> <td><a href="">Suppr</a></td>
+                    </tr>
+                <% }) %>  
+            </table>  
+    </div>
+
+<%- include('footer') %>
+        <% } %> 

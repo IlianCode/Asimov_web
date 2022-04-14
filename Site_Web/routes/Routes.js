@@ -44,10 +44,10 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 
     
 // Afficher les matieres
-    .get('/Matieres', ctrlProviseur.afficher_Matieres)
+    .get('/Matieres', ctrlProviseur.afficher_Matieres) // OK
 
 // Afficher les professeurs
-    .get('/Professeurs', ctrlProviseur.afficher_Prof)
+    .get('/Professeurs', ctrlProviseur.afficher_Prof) // OK
 
 // Céer une matiere 
     .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
@@ -55,22 +55,14 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
 // Créer des prof 
     .post('/Ajout_Nouveau_Prof/:nom/:prenom/:idMatiere/:pseudo/:mdp', ctrlProviseur.ajouter_Prof)
 
-
-
-// Afficher la liste des classes
-    .get('/Referent/Classes', ctrlGlobal.afficher_classe) // Pour Référent
-
-// Afficher la liste des eleves d'une classe
-    .get('/Eleves_Classe/:id', ctrlGlobal.afficher_details_classe) // Pour Professeur et Proviseur
-
 // Afficher toutes les notes de l'élève
     //.get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur
 
 // Afficher formulaire de modification de note
-    .get('/formulaire_Modif_Note/:idClasse/:idEleve/:idNote', ctrlGlobal.formulaire_modif_note)
+    .get('/formulaire_Modif_Note/:idClasse/:idEleve/:idNote', ctrlGlobal.formulaire_modif_note) // OK
 
 // Modifier une note 
-    .post('/Modif_Notes', ctrlGlobal.modifier_note_eleve)
+    .post('/Modif_Notes', ctrlGlobal.modifier_note_eleve) // OK
 
 
 
@@ -81,10 +73,10 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     .get('/MyClasses/:id', ctrlProf.afficher_classe_prof) // OK
 
 // Afficher les notes d'un eleve dans une matiere
-    .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere)
+    .get('/Notes_Matiere/:idProf/:idEleve', ctrlProf.afficher_note_eleve_matiere) // OK
 
 // Supprimer une note
-    .get('/Suppr_Notes/:idClasse/:idEleve/:idNote', ctrlGlobal.supprimer_note_eleve_matiere)
+    .get('/Suppr_Notes/:idClasse/:idEleve/:idNote', ctrlGlobal.supprimer_note_eleve_matiere) // OK
 
 // Ajouter une note a un eleve dans une matiere precise + description de la note
     .post('/Ajout_Notes_Matiere', ctrlProf.ajouter_note_eleve_matiere) // OK
