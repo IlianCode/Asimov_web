@@ -50,10 +50,10 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     .get('/Professeurs', ctrlProviseur.afficher_Prof) // OK
 
 // Céer une matiere 
-    .post('/Ajout_Nouvelle_Matiere/:nom', ctrlProviseur.ajouter_Matiere)
+    .post('/Ajout_Nouvelle_Matiere', ctrlProviseur.ajouter_Matiere) // OK
 
 // Créer des prof 
-    .post('/Ajout_Nouveau_Prof', ctrlProviseur.ajouter_Prof)
+    .post('/Ajout_Nouveau_Prof', ctrlProviseur.ajouter_Prof) // OK
 
 // Afficher toutes les notes de l'élève
     //.get('/Afficher_Notes_Eleve/:idEleve', ctrlGlobal.afficher_note_eleve) // Pour Eleve et Proviseur

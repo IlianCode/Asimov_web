@@ -2,7 +2,7 @@ const db = require('./connexion')
 
 const getMatiere = async () => {
     return new Promise((resolve, reject) => {
-        let sql='SELECT m.idMatiere, m.nom, count(*) As nbProf FROM matiere m INNER JOIN professeur ON Id_Matiere = idMatiere GROUP BY m.idMatiere, m.nom; ';
+        let sql='SELECT idMatiere, nom FROM matiere';
         db.query(sql, (err, data, fields) => {
             if(err || data.length == 0){
                 console.log(err)

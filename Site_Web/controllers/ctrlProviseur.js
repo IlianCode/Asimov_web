@@ -61,18 +61,29 @@ const afficher_Prof = async (req, res) => {
 }
 
 const ajouter_Matiere = async (req, res) => {
-    
-    let nom = req.params.nom;
+    if(req.session.proviseur == 1){
+        let nom = req.body.nom;
 
-    await db.newMatiere(nom)
-    .then((data) => {
-        let err = false;
-        console.log(data)
-        res.json(data)
-    }).catch((err) => {
-        console.log(err)
-        res.json(err)
-    })
+        axios({
+            method: 'post',
+            url: apiAdresse+'/Asimov/api/Ajout_Nouvelle_Matiere',
+            data: {nom : nom}
+        })
+        .then((reponse) => {
+            //On traite la suite une fois la réponse obtenue
+            res.render("evenement", { msg : "Insertion réussi !", url : "/Asimov/Matieres" })     
+        })
+        .catch((erreur) => {
+            //On traite ici les erreurs éventuellement survenues
+            res.render("evenement", { msg : "Une erreur est survenue !", url: "/Asimov/Matieres" }) 
+        })
+    }else{
+        if (req.session.Id > 0){
+            res.render("refused")
+       }else{
+            res.render("refused", {err : true})
+        }
+    }
 }
 
 const ajouter_Prof = async (req, res) => {
