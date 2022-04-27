@@ -18,32 +18,33 @@
         <h3>Moyenne : <%=moyenne%></h3>
         <div>
             <table>
+                <% if (data[0].note) { %>
                 <tr>
                     <th style="padding-right: 50px;">Titre</th>
                     <th style="padding-right: 50px;">Date</th>
                     <th style="padding-right: 50px;">Note</th>
                 </tr>
 
-                <% for (let z = 0; z < data.length; z++) {%>
-                        <tr>
-                            <td style="padding-right: 50px;"><%=data[z].Titre%></td>
-                            <td style="padding-right: 50px;"><%=moment(new Date(data[z].dateNote)).calendar()%></td>
-                            <td style="padding-right: 50px;"><% if (data[z].note === null) {%>Abs<% }else{ %><%=data[z].note%><% } %></td>
-                            <td style="padding-right: 50px;"><a href="/Asimov/formulaire_Modif_Note/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>">Modif</a></td>
-                            <td style="padding-right: 50px;"><a href="/Asimov/Suppr_Notes/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>">Suppr</a></td>
-                        </tr>
-                    <% } %>         
+                    <% for (let z = 0; z < data.length; z++) {%>
+                            <tr>
+                                <td style="padding-right: 50px;"><%=data[z].Titre%></td>
+                                <td style="padding-right: 50px;"><%=moment(new Date(data[z].dateNote)).calendar()%></td>
+                                <td style="padding-right: 50px;"><% if (data[z].note === null) {%>Abs<% }else{ %><%=data[z].note%><% } %></td>
+                                <td style="padding-right: 50px;"><a href="/Asimov/formulaire_Modif_Note/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>">Modif</a></td>
+                                <td style="padding-right: 50px;"><a href="/Asimov/Suppr_Notes/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>">Suppr</a></td>
+                            </tr>
+                        <% } %>
+                    <% } %>          
             </table>
+                <% } %> 
             <form action="/Asimov/Ajout_Notes_Matiere" method="post">
                 <input name="titre" type="text" placeholder="Titre">
                 <input name="note" type="number" placeholder="Note">
                 <input name="idEleve" type="hidden" value="<%=data[0].idEleve%>">
                 <input name="idClasse" type="hidden" value="<%=data[0].Id_Classe%>">
                 <input name="idMatiere" type="hidden" value="<%=data[0].idMatiere%>">
-                <input type="submit">
+                <input class="btn btn-primary" type="submit" value="Envoyer">
             </form>
         </div>
 
 <%- include('footer') %>
-
-    <% } %> 

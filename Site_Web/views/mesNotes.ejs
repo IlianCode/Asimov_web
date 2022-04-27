@@ -3,7 +3,11 @@
     <title>Asimov : Mes notes</title>
 </head>
 <body id="body-mesNotes">
-    <a href="/Asimov/Deco">Se déconnecter</a>
+    <% if (locals.proviseur) {%> 
+        <%- include('enTeteProviseur') %>
+    <% }else{ %> 
+        <a class="btn btn-primary" style="align-self: flex-start;" href="/Asimov/Deco">Se déconnecter</a>
+    <% } %> 
     <% if (locals.err) { %>
         <h1><%=err.msgErreur%></h1>
     <% }else{ %> 

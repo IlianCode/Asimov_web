@@ -15,7 +15,7 @@
                 <h1><%=err%></h1>
             <% }else{ %> 
                 <% classes.forEach((classe) => {%> 
-                    <p><%=classe.nom%></p><a href="/Asimov/Eleves_Classe/<%=idProf%>/<%=classe.idClasse%>">Détails</a>
+                    <p><%=classe.nom%></p><a class="btn btn-primary" href="/Asimov/Eleves_Classe/<%=idProf%>/<%=classe.idClasse%>">Détails</a>
                 <% }) %>    
         </div>
 

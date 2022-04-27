@@ -22,11 +22,27 @@ const getNotes_Matiere = async (idEleve, idProf) => {
         let sql='SELECT e.nom, e.prenom, e.idEleve, e.Id_Classe, n.idNote, n.note, n.dateNote, m.idMatiere, m.nom AS nomMatiere, n.Titre FROM notes n';
         sql +=' INNER JOIN eleve e ON e.idEleve = n.Id_Eleve AND e.idEleve = ? INNER JOIN matiere m ON n.Id_Matiere = m.idMatiere INNER JOIN professeur p ON p.Id_Matiere = m.idMatiere AND p.idProf = ?;'
         db.query(sql, [idEleve, idProf], (err, data, fields) => {
-            if(err || data.length == 0){
+            if(err){
                 console.log(err)
                 reject("Aucune Notes trouvé !")
             }else{
-                resolve(data)
+                if (data.length == 0){
+                    let sql2 = " SELECT e.nom, e.prenom, e.idEleve, e.Id_Classe, m.idMatiere, m.nom AS nomMatiere from eleve e";
+                    sql2 += " INNER JOIN cours c ON c.Id_Classe = e.Id_Classe";
+                    sql2 += " INNER JOIN matiere m ON m.idMatiere = c.Id_Matiere";
+                    sql2 += " INNER JOIN professeur p ON p.idProf = c.Id_Prof AND p.idProf = ?";
+                    sql2 += " WHERE e.idEleve = ?;";
+                    db.query(sql2, [idProf, idEleve], (err, data, fields) => {
+                        if(err){
+                            console.log(err)
+                            reject("Aucune Notes trouvé !")
+                        }else{
+                            resolve(data)
+                        }
+                    })
+                }else{
+                    resolve(data)
+                }
             }
         })
     })

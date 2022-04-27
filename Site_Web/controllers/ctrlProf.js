@@ -66,11 +66,10 @@ const afficher_note_eleve_matiere = async (req, res) => {
                 }
             })
             .catch((err) =>{
-                console.log('ALED');
                 if(req.session.referent == 1){
-                    res.render('mesClasses', {err : "Aucune notes trouvé !", idProf : req.session.Id, ref : true})
+                    res.render('notesMatiere', {err : "Aucune notes trouvé !", idProf : req.session.Id, ref : true})
                 }else{
-                    res.render('mesClasses', {err : "Aucune notes trouvé !", idProf : req.session.Id, ref : false})
+                    res.render('notesMatiere', {err : "Aucune notes trouvé !", idProf : req.session.Id, ref : false})
                 }
             })
     }else{

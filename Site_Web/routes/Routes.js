@@ -66,16 +66,16 @@ routeur.get('/', ctrlGlobal.page_de_connexion) // OK
     .post('/Modif_Notes', ctrlGlobal.modifier_note_eleve) // OK
 
 // Supprimer une matière
-    .get('/Suppr_Matiere/:idMatiere', ctrlProviseur.suppr_Matiere)
+    .get('/Suppr_Matiere/:idMatiere', ctrlProviseur.suppr_Matiere) // OK
 
 //modifier une matiere
-    .post('/Modif_Matiere', ctrlProviseur.modif_Matiere)
+    .post('/Modif_Matiere', ctrlProviseur.modif_Matiere) // OK
 
 // Supprimer un professeur
-    .get('/Suppr_Prof/:idProf', ctrlProviseur.suppr_Prof)
+    .get('/Suppr_Prof/:idProf', ctrlProviseur.suppr_Prof) // OK
 
 //modifier un professeur
-    .post('/Modif_Prof', ctrlProviseur.modif_Prof)
+    .post('/Modif_Prof', ctrlProviseur.modif_Prof) // OK
 
 
 
