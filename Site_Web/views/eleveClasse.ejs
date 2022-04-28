@@ -17,7 +17,7 @@
                 <h1><%=err%></h1>
             <% }else{ %> 
                     <% eleves.forEach((eleve) =>{ %> 
-                        <p><%=eleve.nom+" "+eleve.prenom%></p><a href="<% if(prov === true){ %>/Asimov/Notes/Eleve/<%=eleve.idEleve%><% }else{ %> /Asimov/Notes_Matiere/<%=idProf%>/<%=eleve.idEleve%><% } %> ">Notes</a>
+                        <p><%=eleve.nom+" "+eleve.prenom%></p><a class="btn btn-primary" href="<% if(prov === true){ %>/Asimov/Notes/Eleve/<%=eleve.idEleve%><% }else{ %> /Asimov/Notes_Matiere/<%=idProf%>/<%=eleve.idEleve%><% } %> ">Notes</a>
                     <% }) %> 
      
             <% } %> 

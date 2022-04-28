@@ -205,7 +205,7 @@ const modifier_note_eleve = async (req, res) => { // (POUR : Professeur et Provi
         .then((reponse) => {
             //On traite la suite une fois la réponse obtenue
             if (req.session.proviseur == 1){
-                res.render("evenement", { msg : "Modification réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+                res.render("evenement", { msg : "Modification réussi !", url : "/Asimov/Notes/Eleve/"+idEleve })
             }else{
                 res.render("evenement", { msg : "Modification réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
             }     
@@ -213,7 +213,7 @@ const modifier_note_eleve = async (req, res) => { // (POUR : Professeur et Provi
         .catch((erreur) => {
             //On traite ici les erreurs éventuellement survenues
             if (req.session.proviseur == 1){
-                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes/Eleve/"+idEleve })
             }else{
                 res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve }) 
             }
@@ -254,7 +254,7 @@ const supprimer_note_eleve_matiere = async (req, res) => { // (POUR : Professeur
         .then((reponse) => {
             //On traite la suite une fois la réponse obtenue
             if (req.session.proviseur == 1){
-                res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+                res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Notes/Eleve/"+idEleve })
             }else{
                 res.render("evenement", { msg : "Suppression réussi !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
             }     
@@ -262,7 +262,7 @@ const supprimer_note_eleve_matiere = async (req, res) => { // (POUR : Professeur
         .catch((erreur) => {
             //On traite ici les erreurs éventuellement survenues
             if (req.session.proviseur == 1){
-                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve })
+                res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes/Eleve/"+idEleve })
             }else{
                 res.render("evenement", { msg : "Une erreur est survenue !", url : "/Asimov/Notes_Matiere/"+req.session.Id+"/"+idEleve }) 
             }

@@ -27,16 +27,16 @@ const page_des_notes = (req, res) => {
             }
 
             if(req.session.proviseur == 1){
-                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moyGeneral : moyGeneral, moment : moment, proviseur : true})
+                res.render('mesNotes', {data : data, idEleve : id, tableMatiere : tableIdMatiere, compteur : compteur, moyGeneral : moyGeneral, moment : moment, proviseur : true})
             }else{
-                res.render('mesNotes', {data : data, tableMatiere : tableIdMatiere, compteur : compteur, moyGeneral : moyGeneral, moment : moment})
+                res.render('mesNotes', {data : data, idEleve : id, tableMatiere : tableIdMatiere, compteur : compteur, moyGeneral : moyGeneral, moment : moment, proviseur : false})
             }
         })
         .catch((err) => {
             //On traite ici les erreurs éventuellement survenues
             console.log('ALED');
             err = err.response.data;
-            res.render('mesNotes', {err : err})
+            res.render('mesNotes', {err : err, proviseur : false})
         })
     }else{
         if (req.session.Id > 0){
