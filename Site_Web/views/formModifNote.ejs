@@ -1,25 +1,24 @@
 <%- include('header') %>
     
     <script src="/controllers/ctrlGlobal.js"></script>
-    <title>Asimov : Page de connexion</title>
+    <title>Asimov : Modification de notes</title>
 </head>
 <body id="body-connexion">
-    <div>
+        <div class="centrePage">
+        <div class="formulaire" style="padding-left: 10%; padding-right: 10%; padding-bottom: 10%; width: 600px;">
         <% if (ref === true) { %> 
             <%- include('enTeteReferent') %>
         <% }else{ %> 
             <%- include('enTeteProf') %>
         <% } %> 
-    </div>
-    <div class="centrePage">
-        <div class="formulaire">
-            <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
-            <form action="/Asimov/Modif_Notes" method="POST">
+        <div class="image" style="background-image: url(/img/logo.png); width: 150px; height: 150px; margin-top: 10px;"></div>
+            <form action="/Asimov/Modif_Notes" method="POST" style="display: flex; flex-direction: column; margin-top: 5%;">
+                <h2>Modification de la note</h2>
                 <input name="idClasse" value="<%=idClasse%> " type="hidden">
                 <input name="idEleve" value="<%=idEleve%> " type="hidden">
                 <input name="idNote" value="<%=idNote%> " type="hidden">
                 <input name="note" type="text" placeholder="Note">
-                <input type="submit">
+                <input type="submit" class="btn btn-primary" style="margin-top: 5px;">
             </form>
         </div>
     </div>

@@ -5,19 +5,27 @@
 </head>
 <body id="body-connexion">
     <div class="centrePage">
-        <div class="formulaire">
-            <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
-            <form action="/Asimov/Authentification" method="POST">
-                <input name="pseudo" type="text" placeholder="Pseudo">
-                <input name="mdp" type="password" placeholder="Mot de passe">
-                <input class="btn btn-primary" type="submit" value="Connexion">
+        <div class="formulaire" style="padding-left: 10%; padding-right: 10%;">
+            <div class="image" style="background-image: url(/img/logo.png); width: 150px; height: 150px; margin-top: 10px;"></div>
+            
+            <form action="/Asimov/Authentification" method="POST" style="display: flex; flex-direction: column; margin-top: 5%;">
+                <h2>Connexion</h2>
+                <input name="pseudo" type="text" placeholder="Pseudo" style="margin-top: 5px; width: 350px;">
+                <input name="mdp" type="password" placeholder="Mot de passe" style="margin-top: 5px;">
+                <input class="btn btn-primary" type="submit" value="Connexion" style="margin-top: 5px;">
                 <br>
-                <input type="radio" id="eleve" name="table" value="1" checked>
-                <label for="eleve">Eleve</label>
-                <input type="radio" id="prof/prov" name="table" value="2">
-                <label for="prof">Professeur/Proviseur</label>
+                <div style="display: flex; justify-content: space-around;">
+                    <div>
+                        <input type="radio" id="eleve" name="table" value="1" checked>
+                        <label for="eleve">Eleve</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="prof/prov" name="table" value="2">
+                        <label for="prof">Professeur/Proviseur</label>
+                    </div>
+                </div>
             </form>
-            <div>Vous avez un problème avec votre mot de passe ? <br> Veuillez contacter l'administration afin qu'il soit réinitialisé !</div>
+            <div style="margin-bottom: 20px;">Vous avez un problème avec le mot de passe ?<br> Veuillez contacter l'administration afin qu'il soit réinitialisé !</div>
             <% if (locals.err) { %> 
                 <div style="color: red;"><%=msgErreur%></div>
             <% } %> 

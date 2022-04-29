@@ -3,6 +3,8 @@
     <title>Asimov : Notes de l'élève</title>
 </head>
 <body id="body-mesNotes">
+    <div class="centrePage">
+    <div class="formulaire">
     <div>
         <% if (ref === true) { %> 
             <%- include('enTeteReferent') %>
@@ -16,23 +18,27 @@
         <h2><%=data[0].nom%> <%=data[0].prenom%></h2>
         <h3>Matière : <%=data[0].nomMatiere%></h3>
         <h3>Moyenne : <%=moyenne%></h3>
-        <div>
-            <table>
+        <div style="margin-bottom: 25px; margin-left: 20px; margin-right: 20px;">
+            <table border=1 cellspacing=0 cellpadding=5 style="width: 800px; border-collapse: unset; margin-bottom: 20px;">
                 <% if (data[0].note) { %>
                 <tr>
-                    <th style="padding-right: 50px;">Titre</th>
-                    <th style="padding-right: 50px;">Date</th>
-                    <th style="padding-right: 50px;">Note</th>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Note</th>
+                    <th>Modifiaction</th>
+                    <th>Suppression</th>
                 </tr>
 
                     <% for (let z = 0; z < data.length; z++) {%>
+                        <div style="display: flex;">
                             <tr>
-                                <td style="padding-right: 50px;"><%=data[z].Titre%></td>
-                                <td style="padding-right: 50px;"><%=moment(new Date(data[z].dateNote)).calendar()%></td>
-                                <td style="padding-right: 50px;"><% if (data[z].note === null) {%>Abs<% }else{ %><%=data[z].note%><% } %></td>
-                                <td style="padding-right: 50px;"><a class="btn btn-warning" href="/Asimov/formulaire_Modif_Note/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>">Modif</a></td>
-                                <td style="padding-right: 50px;"><a class="btn btn-danger" href="/Asimov/Suppr_Notes/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>">Suppr</a></td>
+                                <td><%=data[z].Titre%></td>
+                                <td><%=moment(new Date(data[z].dateNote)).calendar()%></td>
+                                <td><% if (data[z].note === null) {%>Abs<% }else{ %><%=data[z].note%><% } %>/100</td>
+                                <td><a class="btn btn-warning" href="/Asimov/formulaire_Modif_Note/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>"><img width="30px" src="/img/modif.png"></a></td>
+                                <td><a class="btn btn-danger" href="/Asimov/Suppr_Notes/<%=data[z].Id_Classe%>/<%=data[z].idEleve%>/<%=data[z].idNote%>"><img width="30px" src="/img/suppr.png"></a></td>
                             </tr>
+                        </div>
                         <% } %>
                     <% } %>          
             </table>
@@ -46,5 +52,7 @@
                 <input class="btn btn-primary" type="submit" value="Envoyer">
             </form>
         </div>
+    </div>
+    </div>
 
 <%- include('footer') %>

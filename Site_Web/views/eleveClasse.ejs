@@ -3,7 +3,8 @@
         <title>Asimov : Eleves de la classe</title>
     </head>
     <body id="body-mesClasses">
-        <div>
+        <div class="centrePage">
+        <div class="formulaire">
             <% if (ref === true) { %> 
                 <%- include('enTeteReferent') %>
             <% }else if(prov === true){ %>
@@ -11,16 +12,28 @@
             <% }else{ %> 
                 <%- include('enTeteProf') %>
             <% } %> 
-        </div>
         <div>
             <% if(locals.err) { %> 
                 <h1><%=err%></h1>
             <% }else{ %> 
+                <h1>Liste des élèves</h1>
+                <div style="margin-bottom: 25px; margin-left: 20px; margin-right: 20px;">
+                    <table border=1 cellspacing=0 cellpadding=5 style="width: 500px; border-collapse: unset; margin-bottom: 20px;">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Notes</th>
+                        </tr>
                     <% eleves.forEach((eleve) =>{ %> 
-                        <p><%=eleve.nom+" "+eleve.prenom%></p><a class="btn btn-primary" href="<% if(prov === true){ %>/Asimov/Notes/Eleve/<%=eleve.idEleve%><% }else{ %> /Asimov/Notes_Matiere/<%=idProf%>/<%=eleve.idEleve%><% } %> ">Notes</a>
+                        <tr>
+                            <td><%=eleve.nom+" "+eleve.prenom%></td>
+                            <td><a class="btn btn-primary" href="<% if(prov === true){ %>/Asimov/Notes/Eleve/<%=eleve.idEleve%><% }else{ %> /Asimov/Notes_Matiere/<%=idProf%>/<%=eleve.idEleve%><% } %> ">Notes</a></td>
+                        </tr>
                     <% }) %> 
+                    </table>
      
             <% } %> 
         </div>
+    </div>
+    </div>
 
 <%- include('footer') %>

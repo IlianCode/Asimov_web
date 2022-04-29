@@ -3,6 +3,8 @@
     <title>Asimov : Matières</title>
 </head>
 <body>
+    <div class="centrePage">
+        <div class="formulaire">
     <div>
         <%- include('enTeteProviseur') %>
     </div>
@@ -12,22 +14,25 @@
         <% if(locals.err) { %> 
             <h1><%=err%></h1>
         <% }else{ %>
-            <table>
-                <tr>
-                    <th>Nom de la matière</th>
-                </tr>
-
-                <% matieres.forEach((matiere) => {%> 
+            <h1>Liste des Matières</h1>
+            <div style="margin-bottom: 25px; margin-left: 20px; margin-right: 20px;">
+                <table border=1 cellspacing=0 cellpadding=5 style="width: 800px; border-collapse: unset;">
                     <tr>
-                        <td><%=matiere.nom%></td> <td><a class="btn btn-primary" href="/Asimov/formulaire_modif_Matiere/<%=matiere.idMatiere%>">Modif</a></td> <td><a class="btn btn-primary" href="/Asimov/Suppr_Matiere/<%=matiere.idMatiere%>">Suppr</a></td>
+                        <th>Nom de la matière</th>
                     </tr>
-                <% }) %>  
-            </table>  
-            <form action="/Asimov/Ajout_Nouvelle_Matiere" method="post">
-                <input name="nom" type="text" placeholder="Nom Matière">
-                <input class="btn btn-primary" type="submit" value="Envoyer">
-            </form> 
-    </div>
+
+                    <% matieres.forEach((matiere) => {%> 
+                        <tr>
+                            <td><%=matiere.nom%></td> <td><a class="btn btn-warning" href="/Asimov/formulaire_modif_Matiere/<%=matiere.idMatiere%>"><img width="30px" src="/img/modif.png"></a></td> <td><a class="btn btn-danger" href="/Asimov/Suppr_Matiere/<%=matiere.idMatiere%>"><img width="30px" src="/img/suppr.png"></a></td>
+                        </tr>
+                    <% }) %>  
+                </table>  
+                <form action="/Asimov/Ajout_Nouvelle_Matiere" method="post" style="margin-top: 15px;">
+                    <input name="nom" type="text" placeholder="Nom Matière">
+                    <input class="btn btn-primary" type="submit" value="Envoyer">
+                </form> 
+            </div>
+        </div>
 
 <%- include('footer') %>
         <% } %> 

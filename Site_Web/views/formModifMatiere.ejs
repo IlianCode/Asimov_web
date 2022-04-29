@@ -1,21 +1,19 @@
 <%- include('header') %>
     
     <script src="/controllers/ctrlGlobal.js"></script>
-    <title>Asimov : Page de connexion</title>
+    <title>Asimov : Modification de matière</title>
 </head>
 <body id="body-connexion">
-    <div>
-        <%- include('enTeteProviseur') %>
-    </div>
-
     <div class="centrePage">
-        <div class="formulaire">
-            <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
-            <h2>Modification d'une matière</h2>
-            <form action="/Asimov/Modif_Matiere" method="POST">
+    <div class="formulaire" style="padding-left: 10%; padding-right: 10%; padding-bottom: 10%; width: 800px;">
+        <%- include('enTeteProviseur') %>
+
+            <div class="image" style="background-image: url(/img/logo.png); width: 150px; height: 150px; margin-top: 10px;"></div>
+            <form action="/Asimov/Modif_Matiere" method="POST" style="display: flex; flex-direction: column; margin-top: 5%;">
+                <h2>Modification d'une matière</h2>
                 <input name="nom" type="text" placeholder="Nom">
                 <input name="idMatiere" value="<%=idMatiere%>" type="hidden">
-                <input type="submit">
+                <input type="submit" class="btn btn-primary" style="margin-top: 5px;">
             </form>
         </div>
     </div>

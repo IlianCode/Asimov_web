@@ -1,44 +1,52 @@
 <%- include('header') %>
     
-    <title>Asimov : Matières</title>
+    <title>Asimov : Professeurs</title>
 </head>
 <body>
-    <div>
+    <div class="centrePage">
+        <div class="formulaire">
+    
         <%- include('enTeteProviseur') %>
-    </div>
     
     <div>
         
         <% if(locals.errProf) { %> 
             <h1><%=errProf%></h1>
         <% }else{ %>
-            <table>
-                <tr>
-                    <th>Nom</th>
-                    <th>Matiere</th>
-                </tr>
-
-                <% profs.forEach((prof) => {%> 
+            <h1>Liste des Professeurs</h1>
+            <div style="margin-bottom: 25px; margin-left: 20px; margin-right: 20px;">
+                <table border=1 cellspacing=0 cellpadding=5 style="width: 800px; border-collapse: unset;">
                     <tr>
-                        <td><%=prof.nom%> <%=prof.prenom%></td> <td><%=prof.nomMatiere%></td> <td><a href="/Asimov/formulaire_modif_Prof/<%=prof.idProf%>">Modif</a></td> <td><a href="/Asimov/Suppr_Prof/<%=prof.idProf%>">Suppr</a></td>
+                        <th>Nom</th>
+                        <th>Matiere</th>
+                        <th>Modification</th>
+                        <th>Suppression</th>
                     </tr>
-                <% }) %>  
-            </table> 
-            <form action="/Asimov/Ajout_Nouveau_Prof" method="post">
-                <input name="nom" type="text" placeholder="Nom">
-                <input name="prenom" type="text" placeholder="Prénom">
-                <input name="mdp" type="password" placeholder="Mot de passe">
-                <select name="idMatiere">
-                    <% if (locals.errMatiere) { %> 
-                    <option value="false"><%=errMatiere%></option>
-                    <% }else{ %>
-                        <% matieres.forEach((matiere) => {%>
-                            <option value="<%=matiere.idMatiere%>"><%=matiere.nom%></option>
-                        <% }) %>  
-                    <% } %> 
-                </select>
-                <input class="btn btn-primary" type="submit" value="Envoyer">
-            </form> 
+
+                    <% profs.forEach((prof) => {%> 
+                        <tr>
+                            <td><%=prof.nom%> <%=prof.prenom%></td> <td><%=prof.nomMatiere%></td> <td><a class="btn btn-warning" href="/Asimov/formulaire_modif_Prof/<%=prof.idProf%>"><img width="30px" src="/img/modif.png"></a></td> <td><a class="btn btn-danger" href="/Asimov/Suppr_Prof/<%=prof.idProf%>"><img width="30px" src="/img/suppr.png"></a></td>
+                        </tr>
+                    <% }) %>  
+                </table> 
+                <form action="/Asimov/Ajout_Nouveau_Prof" method="post" style="margin-top: 15px;">
+                    <input name="nom" type="text" placeholder="Nom">
+                    <input name="prenom" type="text" placeholder="Prénom">
+                    <input name="mdp" type="password" placeholder="Mot de passe">
+                    <select name="idMatiere">
+                        <% if (locals.errMatiere) { %> 
+                        <option value="false"><%=errMatiere%></option>
+                        <% }else{ %>
+                            <% matieres.forEach((matiere) => {%>
+                                <option value="<%=matiere.idMatiere%>"><%=matiere.nom%></option>
+                            <% }) %>  
+                        <% } %> 
+                    </select>
+                    <input class="btn btn-primary" type="submit" value="Envoyer">
+                </form> 
+            </div>
+        </div>
+    </div>
     </div>
 
 <%- include('footer') %>

@@ -1,18 +1,19 @@
 <%- include('header') %>
     
     <script src="/controllers/ctrlGlobal.js"></script>
-    <title>Asimov : Page de connexion</title>
+    <title>Asimov : Nouvel Elève</title>
 </head>
 <body id="body-connexion">
-    <%- include('enTeteReferent') %>
     <div class="centrePage">
-        <div class="formulaire">
-            <div class="image" style="background-image: url(/img/logo.png); width: 100px; height: 100px;"></div>
-            <form action="/Asimov/Ajout_Nouvel_Eleve" method="POST">
-                <input name="nom" type="text" placeholder="Nom">
-                <input name="prenom" type="text" placeholder="Prénom">
-                <input name="mdp" type="password" placeholder="Mot de passe">
-                <select name="classe">
+        <div class="formulaire" style="padding-left: 10%; padding-right: 10%; padding-bottom: 10%; width: 500px;">
+            <%- include('enTeteReferent') %>
+            <div class="image" style="background-image: url(/img/logo.png); width: 150px; height: 150px; margin-top: 10px;"></div>
+            <form action="/Asimov/Ajout_Nouvel_Eleve" method="POST" style="display: flex; flex-direction: column; margin-top: 5%;">
+                <h2>Nouvel élève</h2>
+                <input name="nom" type="text" placeholder="Nom" style="margin-top: 5px; width: 350px;">
+                <input name="prenom" type="text" placeholder="Prénom" style="margin-top: 5px;">
+                <input name="mdp" type="password" placeholder="Mot de passe" style="margin-top: 5px;">
+                <select name="classe" style="margin-top: 5px;">
                 <% if (locals.err) { %>
                 <option value="false" selected><%=err.msgErreur%></option>
                 <% }else{ %>
@@ -21,7 +22,7 @@
                     <% }) %> 
                 <% } %> 
                 </select>
-                <input type="submit">
+                <input type="submit" class="btn btn-primary" style="margin-top: 5px;">
             </form>
         </div>
     </div>

@@ -1,9 +1,12 @@
 body{
+    width: 100%;
+    height: 100%;
     background-color: #5266be;
     color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     margin-top: 20px;
     margin-left: 10px;
@@ -19,12 +22,11 @@ body{
 
 .formulaire{
     background-color: white;
-    width: 600px; 
-    height: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5%;
+    margin-top: 5%;
+    border: 5px solid black;
 }
 
 .image{ 
@@ -35,4 +37,8 @@ body{
 
 .taille{
     background-color: rgb(255, 145, 0);
+}
+
+td, th{
+    border: 1;
 }

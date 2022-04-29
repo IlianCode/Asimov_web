@@ -3,6 +3,8 @@
     <title>Asimov : Classes</title>
 </head>
 <body>
+    <div class="centrePage">
+    <div class="formulaire">
     <div>
         <%- include('enTeteProviseur') %>
     </div>
@@ -11,9 +13,22 @@
         <% if(locals.err) { %> 
             <h1><%=err%></h1>
         <% }else{ %> 
-            <% classes.forEach((classe) => {%> 
-                <p><%=classe.nom%></p><a class="btn btn-primary" href="/Asimov/Eleves_Classe/<%=id%>/<%=classe.idClasse%>">Détails</a>
-            <% }) %>    
+            <h1>Liste des élèves</h1>
+                <div style="margin-bottom: 25px; margin-left: 20px; margin-right: 20px;">
+                    <table border=1 cellspacing=0 cellpadding=5 style="width: 500px; border-collapse: unset; margin-bottom: 20px;">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Détails</th>
+                        </tr>
+                    <% classes.forEach((classe) => {%> 
+                        <tr>
+                            <td><%=classe.nom%></td>
+                            <td><a class="btn btn-primary" href="/Asimov/Eleves_Classe/<%=id%>/<%=classe.idClasse%>">Détails</a></td>
+                        </tr>
+                    <% }) %> 
+                </table>   
+        </div>
+    </div>
     </div>
 
 <%- include('footer') %>
