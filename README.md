@@ -6,7 +6,5 @@ Repo permettant d'heberger le code de la version web de l'applicationa Asimov.
 <br>
 Réalisé en binome avec @AnasChauveau .
 <br><br>
-Kanban c# sur : https://github.com/IlianCode/Asimov_cs
-<br>
 Version C# sur : https://github.com/IlianCode/Asimov_cs
 
